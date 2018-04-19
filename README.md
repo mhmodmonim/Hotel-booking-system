@@ -1,7 +1,7 @@
 # Hotel-mangement-system
 
 
-## How to get the project up and running on your developing enviroment
+## How to get the project up and running on your development enviroment
 
 - please, make sure to run the following commands first
 
@@ -9,7 +9,7 @@
 composer install
 ```
 
-- Change your file `.evn.example` to `.env` then run this command:
+- Change your file `.env.example` to `.env` then run this command:
 
 ```sh
 php artisan key:generate
