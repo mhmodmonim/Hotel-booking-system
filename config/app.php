@@ -146,7 +146,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */
@@ -211,7 +212,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Spatie' =>     Spatie\Permission\PermissionServiceProvider::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
-    ],
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        ],
 
 ];

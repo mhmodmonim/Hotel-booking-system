@@ -25,6 +25,7 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+
 //Route::get('admin/roles', function () {
 //
 //
@@ -43,3 +44,6 @@ Route::get('admin/emp', 'EmployeesController@index');
 
 
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
