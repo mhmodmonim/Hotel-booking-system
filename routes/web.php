@@ -23,3 +23,8 @@ Route::get('/', function () {
 Route::get('admin', function () {
    return view('admin.admin_template');
 });
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
