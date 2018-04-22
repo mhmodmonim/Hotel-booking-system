@@ -78,11 +78,33 @@
                         <div class="form-group">
                             <label for="Gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
-                            {{ Form::radio('Gender','Male') }} Male
-                            {{ Form::radio('Gender','Female') }} Female
-                           
+                            {{ Form::radio('gender','Male') }} Male
+                            {{ Form::radio('gender','Female') }} Female
+
+                            @if ($errors->has('gender'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                            @endif
                         </div>
 
+                       <div class="form-group row">
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
+
+                            <div class="col-md-6">
+                                <select   class="form-control {{$errors->has('country') ? ' is-invalid' : '' }}" name="country" >
+                                @foreach(countries() as $country)
+                                    <option >{{ $country['name'] }}</option>
+                                @endforeach
+                                </select>
+
+                                @if ($errors->has('country'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
+                            </div> 
+                            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
