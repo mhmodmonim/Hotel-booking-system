@@ -15,7 +15,7 @@ class EmployeesController extends Controller
 
     public function  get_data()
     {
-        return datatables()->of(Employee::query())->toJson();
+        return datatables()->of(User::query())->toJson();
 
     }
 }
