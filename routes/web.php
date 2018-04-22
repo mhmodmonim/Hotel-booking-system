@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 
 Route::get('admin', function () {
-   return view('admin.admin_template');
+   return view('admin.index');
 });
 
 
