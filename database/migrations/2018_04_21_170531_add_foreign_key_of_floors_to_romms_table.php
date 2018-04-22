@@ -27,6 +27,7 @@ class AddForeignKeyOfFloorsToRommsTable extends Migration
      */
     public function down()
     {
-        //
+        $table->dropForeign(['rooms_floor_id_foreign']);
+        $table->dropColumn('floor_id');
     }
 }

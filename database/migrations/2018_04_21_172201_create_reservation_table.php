@@ -36,5 +36,15 @@ class CreateReservationTable extends Migration
     public function down()
     {
         Schema::dropIfExists('reservation');
+
+        $table->dropForeign(['reservation_user_id_foreign']);
+        $table->dropColumn('user_id');
+
+        $table->dropForeign(['reservation_room_id_foreign']);
+        $table->dropColumn('room_id');
+
+        $table->dropForeign(['reservation_employee_id_foreign']);
+        $table->dropColumn('employee_id');
     }
+
 }

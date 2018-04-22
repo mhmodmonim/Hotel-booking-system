@@ -15,7 +15,7 @@ class AddNewColsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('image');
-            $table->enum('Gender', ['Male, Female']);
+            $table->enum('Gender', ['Male', 'Female']);
             $table->string('country');
 
         });
