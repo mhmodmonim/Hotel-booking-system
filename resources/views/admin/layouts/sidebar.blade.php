@@ -34,7 +34,9 @@
             <!-- Optionally, you can add icons to the links -->
 
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
+            @hasrole('receptionist')
+            <li class="active"><a href="receptionists"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
+            @endrole
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>

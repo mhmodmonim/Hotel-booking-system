@@ -41,7 +41,9 @@ Route::get('admin', function () {
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data');
 Route::get('admin/emp', 'EmployeesController@index');
-
+Route::get('admin/receptionists/show','UsersController@show');
+Route::get('admin/receptionists','UsersController@index');
+Route::get('admin/add/{id}','UsersController@store');
 
 
 Auth::routes();
