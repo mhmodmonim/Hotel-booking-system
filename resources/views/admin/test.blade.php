@@ -23,7 +23,7 @@
                         $('#users-table').DataTable({
                             processing: true,
                             serverSide: true,
-                            ajax: 'http://hotelsys.local/admin/emp/getdata',
+                            ajax: '{{route('employees.index.dataTables')}}',
                             columns: [
                                 { data: 'id', name: 'id' },
                                 { data: 'name', name: 'name' },
