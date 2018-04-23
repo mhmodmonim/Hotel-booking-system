@@ -181,7 +181,7 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">  {{ ucfirst( Auth::user()->name ) }}</span>
+                            <span class="hidden-xs">  Mahmoud Abdelmoneim</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -189,7 +189,7 @@ desired effect
                                 <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    {{ucfirst( Auth::user()->name) }} - Web Developer
+                                   Mahmoud Abdelmoneim - Web Developer
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
