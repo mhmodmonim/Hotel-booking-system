@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'mobile' => 'required|string|min:11',
             'gender' => 'required',
             'country' => 'required',
-            'image' => 'nullable|mimes:jpeg,jpg',
+            'image' => 'mimes:jpeg,jpg',
 
         ]);
     }
@@ -72,11 +72,6 @@ class RegisterController extends Controller
     {
 
         $request = app('request');
-
-        // if($request->hasFile('image')){
-        //     $request->image->store('public');
-        //     // dd('request');
-        // } 
 
         if(empty($data['image'])){
             $data['image']="public/images/1.jpg";

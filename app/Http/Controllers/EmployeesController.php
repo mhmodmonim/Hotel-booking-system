@@ -18,4 +18,9 @@ class EmployeesController extends Controller
         return datatables()->of(User::query())->toJson();
 
     }
+
+    public function edit($id)
+    {
+    	dd('welcome to edit',$id);
+    }
 }

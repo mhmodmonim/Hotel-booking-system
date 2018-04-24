@@ -39,9 +39,9 @@ Route::get('admin', function () {
 //
 //});
 
-Route::get('admin/emp/getdata', 'EmployeesController@get_data');
+Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
-
+Route::get('employess/{id}/edit','EmployeesController@edit')->name('employees.edit');
 
 
 Auth::routes();
