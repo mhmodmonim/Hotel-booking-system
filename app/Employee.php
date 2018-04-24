@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Employee role($roles)
  * @mixin \Eloquent
  */
-class Employee extends Model
+class Employee extends Authenticatable
 
 {
     use Notifiable;
