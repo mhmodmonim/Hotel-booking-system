@@ -181,7 +181,11 @@ desired effect
                             <!-- The user image in the navbar-->
                             <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
+<<<<<<< HEAD
                             <span class="hidden-xs">  {{ ucfirst( Auth::guard('employee')->user()->name ) }}</span>
+=======
+                            <span class="hidden-xs">  Mahmoud Abdelmoneim</span>
+>>>>>>> 61335c8875e1e78e7236bb2f490bf65f358cbc96
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -189,7 +193,11 @@ desired effect
                                 <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
 
                                 <p>
+<<<<<<< HEAD
                                 {{ ucfirst( Auth::guard('employee')->user()->name ) }} - Web Developer
+=======
+                                   Mahmoud Abdelmoneim - Web Developer
+>>>>>>> 61335c8875e1e78e7236bb2f490bf65f358cbc96
                                     <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
