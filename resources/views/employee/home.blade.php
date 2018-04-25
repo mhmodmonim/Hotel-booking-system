@@ -8,7 +8,11 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    You are logged in as Employee!
+                    You are logged in as Employee!</br>
+                    {{ ucfirst( Auth::user()->name ) }} </br>
+                    {{ ucfirst( Auth::user() ) }}
+                       {{ dd( Auth::user() ) }} 
+
                 </div>
             </div>
         </div>

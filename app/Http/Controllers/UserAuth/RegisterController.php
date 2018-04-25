@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\UserAuth;
-
+use Illuminate\Http\Request;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -56,7 +56,9 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'mobile' => 'required|string|min:11',
             'gender' => 'required',
-            'country' => 'required'
+            'country' => 'required',
+            'image' => 'mimes:jpeg,jpg',
+
         ]);
     }
 
@@ -68,6 +70,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        $request = app('request');
+
+        if(empty($data['image'])){
+            $data['image']="public/images/1.jpg";
+        }else{
+            $data['image']=$request->image->store('public');
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -75,7 +86,9 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'country' => $data['country'],
             'gender' => $data['gender'],
+            'image' => $data['image'],
         ]);
+       
     }
 
     /**

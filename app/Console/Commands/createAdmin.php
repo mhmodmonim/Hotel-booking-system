@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Facades\Hash; 
 use Illuminate\Console\Command;
 use App\Employee;
 
@@ -41,12 +42,13 @@ class createAdmin extends Command
 
         $adminName = $this->option('name');
         $adminPass = $this->option('password');
-
-        $headers = ['email', 'password'];
-        $admins = App\Employee::all([$adminName, $adminPass])->toArray();
-        $this->table($headers, $admins);
-
+        Employee::create([
+            'name' => $adminName,
+            'password' => Hash::make($adminPass),
+            'email' => $adminName,
+            'National_ID' => 'null',
+            'image' => 'null',
+        ]);
         $this->info('Done');
-        $this->save();
     }
 }
