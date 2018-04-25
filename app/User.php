@@ -2,9 +2,12 @@
 
 namespace App;
 
+use App\Notifications\UserResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 /**
  * App\User
@@ -18,16 +21,21 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+
+    protected $guard_name = 'web';
+
+
     protected $fillable = [
-        'name', 'email', 'password', 'mobile', 'gender', 'country' , 'confirm'
-    ];
+
+        'name', 'email', 'password', 'mobile', 'gender', 'country'
+        ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -38,5 +46,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new UserResetPassword($token));
+    }
 
+    public function run()
+    {
+        $permission = Permission::create(['name' => 'Approved']);
+    }
 }

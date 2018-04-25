@@ -12,55 +12,50 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
                     <th>Confirm</th>
                 </tr>
                 </thead>
-                <tfoot>
-                        <tr>
-                            <th>Id</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th>Confirm</th>
-                        </tr>
-                </tfoot>
             </table>
 
-
                 <script>
-                    // document.getElementById("btn").addEventListener("click",function(){
-                    //     window.location.replace("add/id");
-                    // });
-                        $('#table').on('click', 'a.editor_remove', function (e) {
-                            e.preventDefault();
-                    
-                            editor.remove( $(this).closest('tr'), {
-                                title: 'Delete record',
-                                message: 'Are you sure you wish to remove this record?',
-                                buttons: 'Delete'
-                            } );
-                        } );
-
                     $(function() {
                         $('#users-table').DataTable({
                             processing: true,
                             serverSide: true,
-                            ajax: 'http://laravel.local/admin/receptionists/show',
+                            ajax: '{{route('clients.index.dataTables')}}',
                             columns: [
                                 { data: 'id', name: 'id' },
                                 { data: 'name', name: 'name' },
                                 { data: 'email', name: 'email' },
-                                { data: 'created_at', name: 'created_at' },
-                                { data: 'updated_at', name: 'updated_at' },
-                                { data: 'confirm' , defaultContent : '<button id="btn"><a href="" class="editor_remove">Confirm</a></button>' }
+                                { data: 'mobile', name: 'mobile' },
+                                { data: 'gender', name: 'gender' },
+                                {
+                                    orderable :false,
+                                    searchable : false,
+                                    render : function(data,type,row){
+                                        //check in console what the row will look like
+                                        console.log(row);
+                                        //console.log(data);   
+                                        //console.log(type);
+
+                                        //here am just passing a hash to the route helper function and will be replaced with the real id from javascript part
+                                        var mockedEditRoute = '{{route('clients.edit','#replaceMeWithUserId')}}'
+                                        var mockedDeleteRoute = '{{route('clients.delete','#replaceMeWithUserId')}}'
+
+                                        //here i replaced the hashed string with real id
+                                        var realEditRoute= mockedEditRoute.replace('#replaceMeWithUserId',row.id);
+                                        var realDeleteRoute= mockedDeleteRoute.replace('#replaceMeWithUserId',row.id);  
+
+                                        //then here i returned the real url with id
+                                        return "<a href='"+realEditRoute+"' class='btn btn-primary' style='margin-right:5px'> approve </a><a href='"+realDeleteRoute+"' class='btn btn-danger '> decline </a>"
+                                    }
+                                }
+                                
                             ]
-                        })
+                        });
                     });
                 </script>
-                  
-                        
 
 @endsection

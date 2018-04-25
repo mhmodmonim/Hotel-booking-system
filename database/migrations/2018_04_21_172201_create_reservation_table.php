@@ -18,12 +18,10 @@ class CreateReservationTable extends Migration
             $table->float('paidPrice');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('room_id');
-            $table->unsignedInteger('employee_id');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('employee_id')->references('id')->on('employees');
 
         });
     }
