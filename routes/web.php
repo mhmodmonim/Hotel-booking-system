@@ -20,9 +20,7 @@ Route::get('/', function () {
     return view('index');
 })->name('home');
 
-Route::get('reservation', function () {
-    return view('reservation');
-})->name('reservation');
+Route::get('reservation', 'ReservationController@index')->name('reservation');
 
 Route::get('admin', function () {
    return view('admin.index');

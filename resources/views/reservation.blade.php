@@ -148,6 +148,15 @@
 				</div>
 			</div>
 
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 p-b-30">
+						<h2 class="text-center">placeholder for available rooms</h2>
+					</div>
+				</div>
+			</div>
+
+
 			<div class="info-reservation flex-w p-t-80">
 				<div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
 					<h4 class="txt5 m-b-18">
@@ -179,6 +188,9 @@
 			</div>
 		</div>
 	</section>
+
+
+
 
 
 	<!-- Footer -->
