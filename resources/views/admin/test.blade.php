@@ -19,6 +19,7 @@
         </thead>
     </table>
 
+
     <script>
         $(function () {
             $('#users-table').DataTable({
@@ -52,5 +53,6 @@
             });
         });
     </script>
+
 
 @endsection

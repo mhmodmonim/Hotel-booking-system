@@ -29,6 +29,19 @@ Route::get('admin', function () {
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
+// data pages only which are then used by ajax from blades
+Route::get('admin/receptionists/show','UsersController@get_data')->name('clients.index.dataTables');
+Route::get('admin/receptionists/show/approved','UsersController@get_data_approved')->name('clients.approvedIndex.dataTables');
+Route::get('admin/receptionists/show/reservation','UsersController@get_data_reserved')->name('clients.reservation.dataTables');
+//receptionist blades using datapages using ajax
+Route::get('admin/receptionists','UsersController@index')->name('clients.pending');
+Route::get('admin/receptionists/approved','UsersController@approvedIndex')->name('clients.approved');
+Route::get('admin/clients/reservation','UsersController@reservationIndex')->name('clients.reservation');
+Route::get('admin/add/{id}','UsersController@store');
+
+
+Route::get('clients/{id}/edit','UsersController@edit')->name('clients.edit');
+Route::get('clients/{id}/delete','UsersController@delete')->name('clients.delete');
 Route::get('employess/{id}/edit','EmployeesController@edit')->name('employees.edit');
 
 

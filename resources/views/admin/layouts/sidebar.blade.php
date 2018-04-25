@@ -34,7 +34,11 @@
             <!-- Optionally, you can add icons to the links -->
 
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
+            @hasrole('receptionist')
+            <li class="active"><a href="admin/receptionists"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
+            <li class="active"><a href="admin/receptionists/approved"><i class="fa fa-link"></i> <span>My Approved clients</span></a></li>
+            <li class="active"><a href="admin/clients/reservation"><i class="fa fa-link"></i> <span>Clients Reservations​</span></a></li>
+            @endrole
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
