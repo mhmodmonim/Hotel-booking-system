@@ -21,6 +21,10 @@ class EmployeesController extends Controller
 
     public function edit($id)
     {
-    	dd('welcome to edit',$id);
+         $emp =  Employee::find($id);
+         return view('admin.edit' , [
+             'emp' => $emp
+         ]);
+
     }
 }

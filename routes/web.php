@@ -17,27 +17,17 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('index');
+})->name('home');
 
+Route::get('reservation', function () {
+    return view('reservation');
+})->name('reservation');
 
 Route::get('admin', function () {
    return view('admin.index');
 });
 
-
-//Route::get('admin/roles', function () {
-//
-//
-//
-//    $emp = Employee::all();
-//    $datauser = datatables(User::all())->toJson();
-////    dd($emp->hasRole('manager'));
-//    return view('admin.test', [
-//        'emp' => $datauser
-//    ]);
-//
-//});
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
@@ -46,7 +36,7 @@ Route::get('employess/{id}/edit','EmployeesController@edit')->name('employees.ed
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');
