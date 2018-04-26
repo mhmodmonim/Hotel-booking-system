@@ -11,15 +11,8 @@ use DB;
 use DataTables;
 use Yajra\DataTables\QueryDataTable;
 use App\Notifications\InvoicePaid;
-//
-// use App\Listeners\LogNotification;
-// use App\Notifications\AgendamentoPendente;
-// use Notification;
-// use ReflectionClass;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Mail\Mailer;
-use App\Mail; 
+
+
 
 
 class UsersController extends Controller

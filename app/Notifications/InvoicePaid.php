@@ -6,15 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-//
-// use App\Listeners\LogNotification;
-// use App\Notifications\AgendamentoPendente;
-// use ReflectionClass;
-// use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Mail\Mailer;
-use Illuminate\Http\Request;
-use App\Mail; 
+
+
+
 
 class InvoicePaid extends Notification implements ShouldQueue
 {

@@ -9,16 +9,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\InvoicePaid;
-//
-// use App\Listeners\LogNotification;
-// use App\Notifications\AgendamentoPendente;
-// use Notification;
-// use ReflectionClass;
-// use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use Illuminate\Mail\Mailer;
-use Illuminate\Http\Request;
-use App\Mail; 
+
+
+
 
 /**
  * App\User
