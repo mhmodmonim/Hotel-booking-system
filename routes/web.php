@@ -26,6 +26,9 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
+Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
+
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');

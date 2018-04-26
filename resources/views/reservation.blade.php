@@ -161,7 +161,7 @@
 									<h4 class="card-text" style="color: green;"> Capacity :   <b>{{$room->capacity}}</b> person(s)</h4>
 									<div class="d-flex justify-content-between align-items-center">
 										<div class="btn-group">
-											<button type="button" class="btn btn-lg btn-outline-secondary">Book Now</button>
+											<a type="button"  href="{{route('booking', $room->id)}}" class="btn btn-lg btn-outline-secondary">Book Now</a>
 										</div>
 										<small class="text-muted">{{$room->number}}</small>
 									</div>
