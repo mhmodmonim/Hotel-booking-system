@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Notifications\InvoicePaid;
 
 /**
  * App\User
@@ -60,5 +61,15 @@ class User extends Authenticatable
     public function run()
     {
         $permission = Permission::create(['name' => 'Approved']);
+    }
+
+    public function sendEmailNotification($invoice)
+    {
+        $this->notify(new InvoicePaid($invoice));
+    }
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
     }
 }

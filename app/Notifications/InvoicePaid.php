@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class InvoicePaid extends Notification
+class InvoicePaid extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -40,10 +40,14 @@ class InvoicePaid extends Notification
      */
     public function toMail($notifiable)
     {
+        $url = url('http://laravel.local/');
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Notification Subject')
+                    ->greeting('Hello!')
+                    ->line('You are now one of our family')
+                    ->action('View website', $url)
+                    ->line('Thank you for using our website!');
     }
 
     /**
