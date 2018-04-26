@@ -10,6 +10,16 @@ use Spatie\Permission\Models\Permission;
 use DB;
 use DataTables;
 use Yajra\DataTables\QueryDataTable;
+use App\Notifications\InvoicePaid;
+//
+// use App\Listeners\LogNotification;
+// use App\Notifications\AgendamentoPendente;
+// use Notification;
+// use ReflectionClass;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Mail\Mailer;
+use App\Mail; 
 
 
 class UsersController extends Controller
@@ -66,10 +76,14 @@ class UsersController extends Controller
         return $editor->process(request());
     }
 
-    public function edit($id)
+    public function edit($id , InvoicePaid $invoice)
     {
         $user = User::find($id);
         $user->givePermissionTo('Approved');
+        //  dd($invoice);
+        $user->sendEmailNotification($invoice);
+        //it stops here
+        // dd("before redirect");
         return redirect('admin/receptionists');
     }
 

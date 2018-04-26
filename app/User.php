@@ -9,6 +9,16 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\InvoicePaid;
+//
+// use App\Listeners\LogNotification;
+// use App\Notifications\AgendamentoPendente;
+// use Notification;
+// use ReflectionClass;
+// use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use Illuminate\Mail\Mailer;
+use Illuminate\Http\Request;
+use App\Mail; 
 
 /**
  * App\User
@@ -65,11 +75,15 @@ class User extends Authenticatable
 
     public function sendEmailNotification($invoice)
     {
+        // dd($invoice);
         $this->notify(new InvoicePaid($invoice));
+        // dd($invoice);
     }
 
     public function routeNotificationForMail($notification)
     {
+        // dd("yes again");
+        // dd($this->email);
         return $this->email;
     }
 }
