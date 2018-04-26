@@ -11,14 +11,13 @@
 
 
 <div class="container mt-5">
-    <table class="table table-bordered" id="users-table">
+    <table class="table table-bordered" id="reservation-table">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>paidPrice</th>
-            <th>room_id</th>
-            <th>Created At</th>
-            <th>Updated At</th>
+            <th>Paid Price</th>
+            <th>Accompany Number</th>
+            <th>Room Number</th>
+
         </tr>
         </thead>
     </table>
@@ -206,17 +205,15 @@
     </div>
     <script>
         $(function () {
-            $('#users-table').DataTable({
+            $('#reservation-table').DataTable({
                 processing: true,
                 serverSide: true,
+                reCid: 'id',
                 ajax: '{{route('client.reservation.data')}}',
                 columns: [
-                    {data: 'id', name: 'id'},
                     {data: 'paidPrice', name: 'name'},
-                    {data: 'Room_id', name: 'email'},
-                    {data: 'created_at', name: 'created_at'},
-                    {data: 'updated_at', name: 'updated_at'},
-
+                    {data: 'clientAccompanyNumber', name: 'email'},
+                    {data: 'number', name: 'created_at'},
                 ]
             });
         });
