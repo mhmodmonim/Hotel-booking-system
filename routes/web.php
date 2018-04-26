@@ -26,6 +26,9 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
+Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
+
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
@@ -52,7 +55,7 @@ Auth::routes();
 Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'EmployeeAuth\LoginController@login');
-  Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
 
   Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email');
