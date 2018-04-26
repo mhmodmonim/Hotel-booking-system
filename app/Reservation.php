@@ -8,11 +8,11 @@ class Reservation extends Model
 {
     public function user()
     {
-        return $this->belongsTo(User :: class);
+        return $this->hasOne(User :: class);
     }
 
     public function room()
     {
-        return $this->belongsTo(Room :: class);
+        return $this->hasMany(Room :: class);
     }
 }

@@ -5,6 +5,9 @@ namespace App;
 use App\Notifications\EmployeeResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 /**
  * App\Employee
@@ -18,8 +21,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Employee extends Authenticatable
 
 {
-    use Notifiable;
+    use Notifiable,HasRoles;
 
+    protected $guard_name = 'web';
     /**
      * The attributes that are mass assignable.
      *
@@ -48,4 +52,5 @@ class Employee extends Authenticatable
     {
         $this->notify(new EmployeeResetPassword($token));
     }
+    
 }
