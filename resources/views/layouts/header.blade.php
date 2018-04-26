@@ -1,3 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{{asset("ui/images/icons/favicon.png")}}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/bootstrap/css/bootstrap.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/fonts/font-awesome-4.7.0/css/font-awesome.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/fonts/themify/themify-icons.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/animate/animate.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/css-hamburgers/hamburgers.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/animsition/css/animsition.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/select2/select2.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/daterangepicker/daterangepicker.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/slick/slick.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/vendor/lightbox2/css/lightbox.min.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/css/util.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('ui/css/main.css')}}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body class="animsition">
+
 <!-- Header -->
 <header>
     <!-- Header desktop -->
@@ -21,15 +79,21 @@
 
 
                             <li>
-                                <a href="{{route('reservation')}}">Reservation</a>
+                                <a href="{{route('reservation')}}">Book Room</a>
                             </li>
+
 
 
 
                             @guest
                                 <li><a  href="{{ route('login') }}">{{ __('Login') }}</a></li>
                                 <li><a  href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                <li>
+                                    <a href="{{route('client.reservation')}}">My Reservation</a>
+                                </li>
                             @else
+
+
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>

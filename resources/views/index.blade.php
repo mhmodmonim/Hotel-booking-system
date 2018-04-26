@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-	@include('layouts.side')
 	<!-- Slide1 -->
 	<section class="section-slide">
 		<div class="wrap-slick1">
