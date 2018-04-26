@@ -148,13 +148,32 @@
 				</div>
 			</div>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 p-b-30">
-						<h2 class="text-center">placeholder for available rooms</h2>
+
+			<div class="album py-5 bg-light">
+				<div class="container">
+@foreach( $availableRooms as $room )
+					<div class="row">
+						<div class="col-md-4">
+							<div class="card mb-4 box-shadow">
+								<img class="card-img-top" src="{{asset($room->image)}}" alt="Card image cap">
+								<div class="card-body">
+									<h3 class="card-text" style="color: red;"> price:   <b>{{$room->price}}</b>$</h3>
+									<h4 class="card-text" style="color: green;"> Capacity :   <b>{{$room->capacity}}</b> person(s)</h4>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
+											<button type="button" class="btn btn-lg btn-outline-secondary">Book Now</button>
+										</div>
+										<small class="text-muted">{{$room->number}}</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					@endforeach
 					</div>
 				</div>
 			</div>
+
+
 
 
 			<div class="info-reservation flex-w p-t-80">

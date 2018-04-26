@@ -39,7 +39,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('ui/css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('ui/css/main.css')}}">
     <!--===============================================================================================-->
-
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -128,5 +128,6 @@
     <script type="text/javascript" src="{{asset('ui/vendor/lightbox2/js/lightbox.min.js')}}"></script>
     <!--===============================================================================================-->
     <script src="{{asset('ui/js/main.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
 </body>
 </html>
