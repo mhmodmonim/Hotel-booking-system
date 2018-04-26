@@ -34,7 +34,7 @@
             <!-- Optionally, you can add icons to the links -->
 
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            @hasrole('receptionist')
+            @role('receptionist' , 'employee')
             <li class="active"><a href="admin/receptionists"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
             <li class="active"><a href="admin/receptionists/approved"><i class="fa fa-link"></i> <span>My Approved clients</span></a></li>
             <li class="active"><a href="admin/clients/reservation"><i class="fa fa-link"></i> <span>Clients Reservations​</span></a></li>

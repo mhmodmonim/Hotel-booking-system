@@ -9,10 +9,10 @@
             <table class="table table-bordered" id="users-table">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
+                    <th>Country</th>
                     <th>Gender</th>
                     <th>Confirm</th>
                 </tr>
@@ -26,10 +26,10 @@
                             serverSide: true,
                             ajax: '{{route('clients.index.dataTables')}}',
                             columns: [
-                                { data: 'id', name: 'id' },
                                 { data: 'name', name: 'name' },
                                 { data: 'email', name: 'email' },
                                 { data: 'mobile', name: 'mobile' },
+                                { data: 'country', name: 'country' },
                                 { data: 'gender', name: 'gender' },
                                 {
                                     orderable :false,
