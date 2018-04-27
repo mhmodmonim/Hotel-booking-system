@@ -12,9 +12,7 @@ use App\Notifications\InvoicePaid;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-
-
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\User
@@ -26,7 +24,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User role($roles)
  * @mixin \Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable,HasRoles;
 
@@ -87,5 +85,19 @@ class User extends Authenticatable
     {
         return $this->lastLogin ;
     }
+    
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
 
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
