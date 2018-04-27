@@ -72,48 +72,94 @@
                 <!-- Menu -->
                 <div class="wrap_menu p-l-45 p-l-0-xl">
                     <nav class="menu">
-                        <ul class="main_menu mt-3">
-                            <li>
-                                <a href="{{route('home')}}">Home</a>
-                            </li>
-
-
-                            <li>
-                                <a href="{{route('reservation')}}">Book Room</a>
-                            </li>
-
-
-
-                            @auth('employee')
+                            <ul class="main_menu mt-3">
                                 <li>
-                                    <a href="{{route('client.reservation')}}">My Reservation</a>
+                                    <a href="{{route('home')}}">Home</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::guard('employee')->user()->name }} <span class="caret"></span>
-                                    </a>
 
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                <li>
+                                    <a href="{{route('reservation')}}">Book Room</a>
+                                </li>
+
+
+
+                                @auth('employee')
+
+                                    <li>
+                                        <a href="{{route('dashboard')}}">Dashboard</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            @auth('employee')
+                                                {{ Auth::guard('employee')->user()->name }} <span class="caret"></span>
+                                            @endauth
+                                            @auth('user')
+                                                {{ Auth::guard('user')->user()->name }} <span class="caret"></span>
+                                            @endauth
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
 
-                            @else
-                                <li><a  href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                <li><a  href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                            <form id="logout-form" action="{{ route('employeelogout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                        </div>
+                                    </li>
+                                @else
+
+                                    @auth( 'user')
+
+
+                                    <li>
+                                        <a href="{{route('client.reservation')}}">My Reservation</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                          @auth('employee')
+                                            {{ Auth::guard('employee')->user()->name }} <span class="caret"></span>
+                                         @endauth
+                                            @auth('user')
+                                                  {{ Auth::guard('user')->user()->name }} <span class="caret"></span>
+                                                @endauth
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{route('userprofile')}}">
+                                                Edit Profile
+                                            </a>
+
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            @auth('employee')
+                                            <form id="logout-form" action="{{ route('employeelogout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                                @endauth
+                                            @auth('user')
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            @endauth
+                                        </div>
+                                    </li>
+                                @else
+                                    <li><a  href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                                    <li><a  href="{{ route('register') }}">{{ __('Register') }}</a></li>
 
 
 
-                            @endauth
-                        </ul>
+                                @endauth
+                                    @endauth
+
+                            </ul>
                     </nav>
                 </div>
 

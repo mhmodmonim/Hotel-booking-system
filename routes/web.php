@@ -26,6 +26,8 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+Route::get('profile/edit', 'UserProfile@index')->name('userprofile');
+
 Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
 Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
 Route::get('client/reservation/data', 'ClientReservations@get_data')->name('client.reservation.data');
@@ -34,6 +36,11 @@ Route::post('reservation/payment/{id}', 'ReservationController@store')->name('pa
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
+
+//route employees from the home page to admin area
+Route::get('admin/', 'DashboardController@index')->name('dashboard');
+
+
 // data pages only which are then used by ajax from blades
 Route::get('admin/receptionists/show','UsersController@get_data')->name('clients.index.dataTables');
 Route::get('admin/receptionists/show/approved','UsersController@get_data_approved')->name('clients.approvedIndex.dataTables');

@@ -26,7 +26,7 @@ class ReservationController extends Controller
         $capcity = $room->capacity;
 
         if ($accompany > $capcity) {
-            return redirect()->route('booking', [$id])->with('failure', 1);
+            return redirect()->route('booking', [$id])->with('failure', "invaild number");
 
         }
 
