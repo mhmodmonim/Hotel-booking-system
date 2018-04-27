@@ -27,7 +27,6 @@ class LogSuccessfulLogin implements ShouldQueue
      */
     public function handle(Login $event)
     {  
-        // dd($event);
             $event->user->lastLogin = date('Y-m-d H:i:s');
             $event->user->save();   
     }
@@ -35,7 +34,6 @@ class LogSuccessfulLogin implements ShouldQueue
     public function failed(Login $event, $exception)
     {
         print_r($event);
-        // print($event);
         print($exception);
     }
 }

@@ -71,15 +71,11 @@ class User extends Authenticatable
 
     public function sendEmailNotification($invoice)
     {
-        // dd($invoice);
         $this->notify(new InvoicePaid($invoice));
-        // dd($invoice);
     }
 
     public function routeNotificationForMail($notification)
     {
-        // dd("yes again");
-        // dd($this->email);
         return $this->email;
     }
 

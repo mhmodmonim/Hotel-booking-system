@@ -32,7 +32,6 @@ class InvoicePaid extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        // dd("not now");
         return ['mail'];
     }
 
@@ -44,7 +43,6 @@ class InvoicePaid extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-        // dd($notifiable);
         $url = url('http://laravel.local/');
 
         return (new MailMessage)
