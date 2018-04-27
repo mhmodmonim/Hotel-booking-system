@@ -11,7 +11,6 @@
                     You are logged in as Employee!</br>
                     {{ ucfirst( Auth::user()->name ) }} </br>
                     {{ ucfirst( Auth::user() ) }}
-                       {{ dd( Auth::user() ) }} 
 
                 </div>
             </div>

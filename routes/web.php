@@ -27,6 +27,8 @@ Route::get('admin', function () {
 });
 
 Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
+Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
+Route::get('client/reservation/data', 'ClientReservations@get_data')->name('client.reservation.data');
 Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
 
 

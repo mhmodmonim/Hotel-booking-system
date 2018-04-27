@@ -4,13 +4,10 @@
 <body class="animsition">
 
 
-	@include('layouts.side')
-
-
 	<!-- Title Page -->
 	<section class="bg-title-page flex-c-m p-t-160 p-b-80 p-l-15 p-r-15" style="background-image: url({{asset('ui/images/slide1-02.jpg')}});">
 		<h2 class="tit6 t-center">
-			Reservation
+			Book A Relaxing Room
 		</h2>
 	</section>
 
@@ -175,7 +172,7 @@
 
 
 
-
+			<div class="container">
 			<div class="info-reservation flex-w p-t-80">
 				<div class="size23 w-full-md p-t-40 p-r-30 p-r-0-md">
 					<h4 class="txt5 m-b-18">
@@ -205,6 +202,7 @@
 				</div>
 
 			</div>
+		</div>
 		</div>
 	</section>
 
