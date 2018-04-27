@@ -78,6 +78,7 @@ class RegisterController extends Controller
             $data['image']="1.jpg";
         }else{
             $image=$request->image->getClientOriginalName();
+
             Storage::putFileAs('public/images', $data['image'], $image);
         }
 

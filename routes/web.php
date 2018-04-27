@@ -27,6 +27,7 @@ Route::get('admin', function () {
 });
 
 Route::get('profile/edit', 'UserProfile@index')->name('userprofile');
+Route::post('profile/{id}', 'UserProfile@update')->name('profile.update');
 
 Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
 Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');

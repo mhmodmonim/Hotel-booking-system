@@ -11,11 +11,16 @@
 
     <section class="container mt-5">
         <div class="row">
-            <div class="col-4">
+            <div class="col-2">
                 <img src="{{$user->image}}" alt="" class="img-thumbnail">
-            </div>
-            <div class="col-8">
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/user/update') }}" enctype='multipart/form-data'>
+
+                <div class="details mt-2">
+                <p class="text-center"><i class="fa fa-get-pocket fa-1x mr-3"></i>  {{$user->name}}</p>
+                <p class="text-center"><i class="fa  fa-map-pin fa-1x mr-3"></i>  {{$user->country}}</p>
+                </div>
+                </div>
+            <div class="col-10">
+        <form class="form-horizontal" role="form" method="POST" action="{{ route('profile.update', $user->id) }}" enctype='multipart/form-data'>
             @csrf
 
             <div class="form-group row">
@@ -65,7 +70,7 @@
                 <label for="Gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                 @if($user->gender == 'Male')
                 {{ Form::radio('gender','Male', true) }} Male
-                {{ Form::radio('gender','Female', false) }} Male
+                {{ Form::radio('gender','Female', false) }} Female
                 @else
                 {{ Form::radio('gender','Male', false) }} Male
                 {{ Form::radio('gender','Female', true) }} Female

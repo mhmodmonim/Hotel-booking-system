@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 
 class ClientReservations extends Controller
@@ -19,7 +20,7 @@ class ClientReservations extends Controller
             ->join('users', 'reservation.user_id', '=' , 'users.id')
             ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
             ->select('reservation.paidPrice', 'reservation.clientAccompanyNumber', 'rooms.number', 'users.id')
-            ->where('users.id', '=', 1)
+            ->where('users.id', '=', Auth::guard('user')->user()->id )
             ->get();
         return datatables()->of($query)->toJson();
 

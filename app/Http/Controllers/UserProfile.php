@@ -16,4 +16,12 @@ class UserProfile extends Controller
             'user' => $user
         ]);
     }
+
+    public function update(Request $request , $id)
+    {
+            $user = User::findOrFail($id);
+            $user->fill($request->only('name','email', 'mobile', 'gender', 'country', 'image'))->save();
+        return redirect(route('userprofile'));
+
+    }
 }

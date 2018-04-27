@@ -14,7 +14,7 @@
     <table class="table table-bordered" id="reservation-table">
         <thead>
         <tr>
-            <th>Paid Price</th>
+            <th>Paid Price $</th>
             <th>Accompany Number</th>
             <th>Room Number</th>
 
@@ -211,9 +211,9 @@
                 reCid: 'id',
                 ajax: '{{route('client.reservation.data')}}',
                 columns: [
-                    {data: 'paidPrice', name: 'name'},
-                    {data: 'clientAccompanyNumber', name: 'email'},
-                    {data: 'number', name: 'created_at'},
+                    {data: 'paidPrice', name: 'paidPrice'},
+                    {data: 'clientAccompanyNumber', name: 'clientAccompanyNumber'},
+                    {data: 'number', name: 'number'},
                 ]
             });
         });

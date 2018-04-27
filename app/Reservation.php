@@ -10,7 +10,7 @@ class Reservation extends Model
     protected $table = 'reservation';
     protected $fillable = [
 
-        'paidPrice', 'user_id', 'room_id', 'employee_id'
+        'paidPrice', 'user_id', 'room_id', 'employee_id','clientAccompanyNumber'
     ];
 
     public function user()

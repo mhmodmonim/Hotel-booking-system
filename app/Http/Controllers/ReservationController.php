@@ -7,6 +7,7 @@ use App\Room;
 use App\Reservation;
 use DB;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Auth;
 class ReservationController extends Controller
 {
     public function index()
@@ -52,9 +53,10 @@ class ReservationController extends Controller
 
 
         Reservation::create([
-        'paidPrice' => $room->price,
-        'user_id' => 1,
+        'paidPrice' => (int) $room->price,
+        'user_id' => Auth::guard('user')->user()->id,
         'room_id' => $room->id,
+        'clientAccompanyNumber' => $request->accompany,
         'employee_id' => 1,
 
     ]);
