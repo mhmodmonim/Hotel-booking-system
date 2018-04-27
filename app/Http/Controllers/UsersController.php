@@ -53,12 +53,12 @@ class UsersController extends Controller
 
     public function get_data_reserved()
     {
-        //$user = Auth::guard(employee)->user()->id();
+        $user = Auth::guard(employee)->user()->id();
         $query = DB::table('reservation')
             ->join('users', 'reservation.user_id', '=', 'users.id')
             ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
             ->select('reservation.paidPrice','reservation.clientAccompanyNumber','rooms.number' , 'users.name')
-            ->where('users.employee_id', '=', 3)
+            ->where('users.employee_id', '=', $user)
             ->get();
         return DataTables::of($query)->toJson();
     }
