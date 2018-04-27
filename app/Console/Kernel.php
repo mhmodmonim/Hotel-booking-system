@@ -4,9 +4,16 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\User;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notifiable;
+
 
 class Kernel extends ConsoleKernel
 {
+    use Notifiable;
     /**
      * The Artisan commands provided by your application.
      *
@@ -24,8 +31,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+
+        $schedule->call(function(){
+            User::lastLogin();
+        })
+        ->monthly()
+        ->when(function () {
+            if( User::lastLogin() > 30)
+            return true;
+        })
+        ->emailOutputTo(function(){
+            User::routeNotificationForMail($notification);
+        });
     }
 
     /**

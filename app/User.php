@@ -9,6 +9,9 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Notifications\InvoicePaid;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 
 
@@ -38,7 +41,7 @@ class User extends Authenticatable
 
     protected $fillable = [
 
-        'name', 'email', 'password', 'mobile', 'gender', 'country', 'image'
+        'name', 'email', 'password', 'mobile', 'gender', 'country', 'image' , 'lastLogin'
         ];
 
     /**
@@ -79,4 +82,10 @@ class User extends Authenticatable
         // dd($this->email);
         return $this->email;
     }
+
+    public function lastLogin()
+    {
+        return $this->lastLogin ;
+    }
+
 }

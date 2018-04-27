@@ -11,6 +11,8 @@ use DB;
 use DataTables;
 use Yajra\DataTables\QueryDataTable;
 use App\Notifications\InvoicePaid;
+use App\Events\LoginEvent;
+use Illuminate\Auth\Events\Login;
 
 
 
@@ -54,6 +56,7 @@ class UsersController extends Controller
 
     public function get_data_reserved()
     {
+        //$user = Auth::guard(employee)->user()->id();
         $query = DB::table('reservation')
             ->join('users', 'reservation.user_id', '=', 'users.id')
             ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
@@ -84,6 +87,12 @@ class UsersController extends Controller
     {
         User::where('id',$id)->delete();
         return Redirect(route('clients.pending'));
+    }
+
+    public function loginCheck($id)
+    {
+        $user = User::find($id);
+        event(new Login($user));
     }
 
 }
