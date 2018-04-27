@@ -58,6 +58,7 @@ Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'EmployeeAuth\LoginController@login');
   Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
+  Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogoutlogout');
 
   Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email');
@@ -78,3 +79,4 @@ Route::group(['prefix' => 'user'], function () {
   Route::get('/password/reset', 'UserAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'UserAuth\ResetPasswordController@showResetForm');
 });
+

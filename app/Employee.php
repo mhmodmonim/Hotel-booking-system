@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * App\Employee
@@ -52,5 +53,4 @@ class Employee extends Authenticatable
     {
         $this->notify(new EmployeeResetPassword($token));
     }
-    
 }
