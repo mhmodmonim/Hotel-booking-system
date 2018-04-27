@@ -39,12 +39,8 @@ class UsersController extends Controller
         $query = DB::table('users')
                     ->whereNotIn('id', DB::table('model_has_permissions')->select('model_id'))
                     ->get();
-        //$query = DB::table('model_has_permissions')->leftJoin('users', 'model_has_permissions.model_id', '=', 'users.id')->get();
-        // dd($query);
         return DataTables::of($query)->toJson();
-        // return datatables(User::query())->toJson();
-        //return datatables()->query(DB::table('users')->join('model_has_permissions', 'users.id', '=', 'model_has_permissions.model_id')->get())->toJson();
-        //return datatables()->of(DB::table('users'))->toJson();
+
 
     }
 
@@ -63,7 +59,6 @@ class UsersController extends Controller
             ->select('reservation.paidPrice','reservation.clientAccompanyNumber','rooms.number' , 'users.name')
             ->where('users.employee_id', '=', 3)
             ->get();
-        //$query = DB::table('reservation')->select('paidPrice','clientAccompanyNumber') ;
         return DataTables::of($query)->toJson();
     }
 
@@ -75,11 +70,9 @@ class UsersController extends Controller
     public function edit($id , InvoicePaid $invoice)
     {
         $user = User::find($id);
+        $permission = Permission::create(['name' => 'Approved']);
         $user->givePermissionTo('Approved');
-        //  dd($invoice);
         $user->sendEmailNotification($invoice);
-        //it stops here
-        // dd("before redirect");
         return redirect('admin/receptionists');
     }
 

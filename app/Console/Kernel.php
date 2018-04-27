@@ -32,16 +32,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // dd(User::lastLogin());
-        $schedule->command('check:login')
-        ->monthly()
+        // dd('here');
+        $schedule->command('check:login')->daily();
+        // ->emailOutputTo('fadyraafatelgawly@gmail.com');
         // ->when(function () {
         //     if( User::lastLogin() > 30)
         //     return true;
         // })
-        ->emailOutputTo(function(){
-            User::routeNotificationForMail($notification);
-        });
+        // ->emailOutputTo(function(){
+        //     User::routeNotificationForMail($notification);
+        // });
     }
 
     /**

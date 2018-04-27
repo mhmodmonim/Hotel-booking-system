@@ -2,11 +2,16 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Notifications\Notifiable;
+use App\Notifications\InvoicePaid;
 use Illuminate\Console\Command;
 use App\User;
+use Carbon\Carbon;
+
 
 class LastLogin extends Command
 {
+    use Notifiable;
     /**
      * The name and signature of the console command.
      *
@@ -36,8 +41,26 @@ class LastLogin extends Command
      *
      * @return mixed
      */
-    public function handle()
+    public function handle(InvoicePaid $invoice)
     {
-        User::lastLogin();
+        $this->line('hii');
+        $users = User::all();
+        // dd($users);
+        foreach($users as $user)
+        {
+            $timestamp = strtotime($user->lastLogin());
+            $now = Carbon::now()->timestamp;
+            // dd($now);
+            $duration = $now + 30*24*60*60 ;
+            // dd($duration);
+            if($timestamp > $duration)
+            {
+                // dd($user);
+                $user->sendEmailNotification($invoice);
+                // dd('here');
+            }
+        }
+        // $user = User::lastLogin();
+        
     }
 }
