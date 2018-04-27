@@ -12,6 +12,7 @@ use App\Notifications\InvoicePaid;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Notifications\Sheduled;
 
 
 
@@ -72,6 +73,11 @@ class User extends Authenticatable
     public function sendEmailNotification($invoice)
     {
         $this->notify(new InvoicePaid($invoice));
+    }
+
+    public function sendScheduleNotification($invoice)
+    {
+        $this->notify(new Sheduled($invoice));
     }
 
     public function routeNotificationForMail($notification)

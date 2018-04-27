@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\InvoicePaid;
+use App\Notifications\Sheduled;
 use Illuminate\Console\Command;
 use App\User;
 use Carbon\Carbon;
@@ -41,26 +41,18 @@ class LastLogin extends Command
      *
      * @return mixed
      */
-    public function handle(InvoicePaid $invoice)
+    public function handle(Sheduled $invoice)
     {
-        $this->line('hii');
-        $users = User::all();
-        // dd($users);
-        foreach($users as $user)
+        foreach(User::all() as $user)
         {
             $timestamp = strtotime($user->lastLogin());
             $now = Carbon::now()->timestamp;
-            // dd($now);
             $duration = $now + 30*24*60*60 ;
-            // dd($duration);
             if($timestamp > $duration)
             {
-                // dd($user);
-                $user->sendEmailNotification($invoice);
-                // dd('here');
+                $user->sendScheduleNotification($invoice);
             }
         }
-        // $user = User::lastLogin();
         
     }
 }
