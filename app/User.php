@@ -15,6 +15,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Notifications\Sheduled;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+//<a href='"+realDeleteRoute+"' class='btn btn-danger' > decline </a>
 
 /**
  * App\User
