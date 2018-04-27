@@ -20,7 +20,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\createAdmin'
+        'App\Console\Commands\createAdmin',
+        'App\Console\Commands\LastLogin'
     ];
 
     /**
@@ -31,15 +32,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
-        $schedule->call(function(){
-            User::lastLogin();
-        })
+        // dd(User::lastLogin());
+        $schedule->command('check:login')
         ->monthly()
-        ->when(function () {
-            if( User::lastLogin() > 30)
-            return true;
-        })
+        // ->when(function () {
+        //     if( User::lastLogin() > 30)
+        //     return true;
+        // })
         ->emailOutputTo(function(){
             User::routeNotificationForMail($notification);
         });

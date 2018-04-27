@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Auth\Events\Login;
+use App\Listeners\LogSuccessfulLogin;
+use App\Events\LoginEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 // use App\Listeners\LogNotification;
