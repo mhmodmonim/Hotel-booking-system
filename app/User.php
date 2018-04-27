@@ -12,14 +12,9 @@ use App\Notifications\InvoicePaid;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-<<<<<<< HEAD
 use App\Notifications\Sheduled;
-
-
-
-=======
 use Tymon\JWTAuth\Contracts\JWTSubject;
->>>>>>> 0d06bb02d431f956da805cfbd8284f465410f77d
+
 
 /**
  * App\User
