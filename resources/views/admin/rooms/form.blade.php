@@ -2,7 +2,7 @@
     <div class="col-xs-8 col-sm-8 col-md-8">
         <div class="form-group">
             <label>Number</label>
-            {!! Form::number('number', null, array('placeholder' => 'Number','class' => 'form-control')) !!}
+            {!! Form::number('number', rand(1000, 9999), array('placeholder' => 'Number' ,'class' => 'form-control')) !!}
         </div>
     </div>
     <div class="col-xs-8 col-sm-8 col-md-8">
@@ -15,7 +15,8 @@
     <div class="col-xs-8 col-sm-8 col-md-8">
         <div class="form-group">
             <label>price</label>
-           <input type='number' name='price' value="{{intval($room->price)*100 }}" class='form-control'>
+           <input type='number' name='price' value="" class='form-control'>
+           <input type='hidden' name='employee_id' value="{{Auth::guard('employee')->user()->id}}" >
         </div>
     </div>
     

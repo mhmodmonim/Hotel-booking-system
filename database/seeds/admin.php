@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Employee;
 class admin extends Seeder
 {
     /**
@@ -11,6 +13,8 @@ class admin extends Seeder
      */
     public function run()
     {
+        Role::create(['name'=> "admin"]);
+
         DB::table('employees')->insert([
             'name' => 'admin',
             'email' => 'admin@admin.com',
@@ -19,5 +23,10 @@ class admin extends Seeder
             'image' => '3.jpg',
             'employee_id' => 1
         ]);
+
+        $emp =  Employee::first()->assignRole('admin');
+
     }
+
+
 }

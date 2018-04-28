@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Employee;
 use App\Room;
 use App\Floor;
+use Auth;
 
 use Storage;
 
