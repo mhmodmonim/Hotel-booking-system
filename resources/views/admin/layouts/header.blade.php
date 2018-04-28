@@ -96,7 +96,7 @@ desired effect
                                             <div class="pull-left">
                                                 <!-- User Image -->
                                              
-                                                <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
+                                                <img src=" {{ Storage::url('images/3.jpg') }}" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -181,7 +181,7 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{  asset("public/zamalek.png")}}" class="user-image"  >
+                            <img src="{{  Storage::url('images/3.jpg') }}" class="user-image"  >
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">  {{ ucfirst( Auth::guard('employee')->user()->name ) }}</span>
                         </a>
