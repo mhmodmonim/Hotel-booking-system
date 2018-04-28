@@ -12,7 +12,7 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        $rooms = DB::table('rooms')->whereNotIn('id', DB::table('reservation')->select('room_id'))->get();
+        $rooms = DB::table('rooms')->whereNotIn('id', DB::table('reservations')->select('room_id'))->get();
         return view('reservation', [
             'availableRooms' => $rooms
         ]);
