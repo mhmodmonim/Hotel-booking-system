@@ -52,7 +52,7 @@
             <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="pk_test_u4z63tALQEHdpxzfSthBLiPu"
-                    data-amount="{{$room->price}}"
+                    data-amount="{{ (float)$room->price * 100}}"
                     data-name="Stripe.com"
                     data-description="Example charge"
                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
