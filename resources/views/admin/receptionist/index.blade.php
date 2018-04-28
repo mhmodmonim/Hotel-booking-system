@@ -49,18 +49,25 @@
                                         var realDeleteRoute= mockedDeleteRoute.replace('#replaceMeWithUserId',row.id);  
 
                                         //then here i returned the real url with id
-                                        return "<a href='"+realEditRoute+"' class='btn btn-primary' style='margin-right:5px'> approve </a><button onclick="getMessage()" class='btn btn-danger'>decline</button>"
+                                        return "<a href='"+realEditRoute+"' class='btn btn-primary' style='margin-right:5px'> approve </a><button  onclick='getMessage(\"" + realDeleteRoute + '\",\"' + row.id + "\")' id="+row.id+" class='btn btn-danger'>decline</button>"
                                     }
                                 }
                                 
                             ]
                         });
                     });
-                    function getMessage(){
+                    function getMessage(realDeleteRoute, row){
+                        var ButtonId =$('#'+row).attr('id');
                         $.ajax({
                             type:'get',
                             url: realDeleteRoute,
-                            data: 
+                            success:function(response){
+                                console.log(response.status);
+                                $('#'+ButtonId).parent().parent().remove();    
+                            },
+                            error:function(){
+                                console.log('not fine');
+                            }
                         });
                     }
                 </script>

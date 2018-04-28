@@ -4,7 +4,7 @@
     <div class="row">
             <div class="col-lg-8 ">
                 <div class="pull-left">
-                    <h2>Add Room</h2>
+                    <h2>Add Manager</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href=""> Back</a>
@@ -25,10 +25,9 @@
 
         @endif
 
-    
 
-        {!! Form::open(array('method'=>'POST' , 'route' => 'rooms.store')) !!}
-            @include('admin.rooms.form' , $floors)
+        {!! Form::open(array('method'=>'POST' , 'route' => 'Managers.store' , 'files' => true )) !!}
+            @include('admin.Managers.form')
         {!! Form::close() !!}
 
     </div>

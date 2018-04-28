@@ -31,15 +31,16 @@ class ManagerController extends Controller
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
-            'email' => 'required|exists:users,email',
+            'email' => 'required|email',
             'password' => 'required|min:6',
             'gender' => 'required',
             'mobile'=>'required|min:11',
             'image'=>'mimes:jpg,jpeg',
-            'country'=>'required'
+            'country'=>'required',
+            
         ]);
         $user=new User;
-        $path = $request->image->store('public');
+        $path = $request->image->store('public/images');
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
@@ -59,15 +60,11 @@ class ManagerController extends Controller
         } 
     }
 
-
     public function create(){
         $countries = countries();
         return view('admin.clients.create',compact('countries'));
-
-
     }
     
-
     
     public function update(Request $request, $id){   
         $request->validate([
@@ -85,7 +82,7 @@ class ManagerController extends Controller
         $user->country = $request->country;
         if($request->hasFile('image')){
             Storage::delete($user->image);
-            $path = $request->image->store('public');   
+            $path = $request->image->store('public/images');   
         }
         $user->save();
         return redirect()->route('clients.index')

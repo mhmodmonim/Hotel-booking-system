@@ -40,8 +40,13 @@ class ManagerFloorController extends Controller
     public function delete(Request $request)
     {    
         if($request->ajax()){
-            $floor =Floor::findOrFail($request->id)->delete();
-            return response()->json(['deleteStatus'=> $floor  ]);
+            $floor =Floor::findOrFail($request->id)->rooms();
+           if($floor){
+                return response()->json(['deleteStatus'=> false  ]);
+           }else{
+                //$floor->delete();
+                return response()->json(['deleteStatus'=> true  ]);
+           }
         }    
     }
 

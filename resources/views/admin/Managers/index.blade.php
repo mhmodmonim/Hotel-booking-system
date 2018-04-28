@@ -12,10 +12,8 @@
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <th>Number</th>
-                    @if($loginAdminRole == 'Admin')
-                    <th>manager name </th>
-                    @endif
+                    <th>Email</th>
+                    <th>National_ID</th>
                     <th>Edit</th>
                     <th>Delete</th>
                   
@@ -26,33 +24,26 @@
                 <script>
                     $(function() {
                         $('#users-table').on('click', '.delete', function (){
-
                             var buttonId=$(this).prop('id');
                             $.ajax({
-                                'url': '{{ route("floors.delete") }}' ,
+                                'url': '{{ route("Managers.delete") }}' ,
                                 'data':{ 'id':buttonId , '_token':'{{ csrf_token()}}' }  ,
                                  'method' : 'POST' ,
                                  'success':function(res){
-                                     console.log(res);
-                                     if(res){
-                                        $('#'+buttonId).parents('tr').remove();
-                                     }else{
-                                         alert("This floor is not empty")
-                                     }
+                                     console.log(res.deleteStatus);
+                                    $('#'+buttonId).parents('tr').remove();
                                  }
                             });
                         });
                         $('#users-table').DataTable({
                             processing: true,
                             serverSide: true,
-                            ajax: '{{route('floorsData')}}',
+                            ajax: '{{route('ManagersData')}}',
                             columns: [
                                 { data: 'id', name: 'id' },
                                 { data: 'name', name: 'name' },
-                                { data: 'number', name: 'number ' },
-                                <?php if($loginAdminRole == 'Admin'): ?>
-                                { data: 'employee.name', name: 'employee.name' },
-                                <?php endif ?>
+                                { data: 'email', name: 'email' },
+                                { data: 'National_ID', name: 'National_ID' },
                                 {
                                     orderable :false,
                                     searchable : false,
@@ -60,7 +51,7 @@
                                         //check in console what the row will look like
                                         console.log(row);
                                         //here am just passing a hash to the route helper function and will be replaced with the real id from javascript part
-                                        var mockedEditRoute = '{{route('floors.edit','#replaceMeWithUserId')}}'
+                                        var mockedEditRoute = '{{route('Managers.edit','#replaceMeWithUserId')}}'
                                         //here i replaced the hashed string with real id
                                         var realEditRoute= mockedEditRoute.replace('#replaceMeWithUserId',row.id);
                                         //then here i returned the real url with id
@@ -70,16 +61,8 @@
                                 {
                                     orderable :false,
                                     searchable : false,
-                                    render : function(data,type,row){
-                                        <?php if($loginAdminRole== 'Manager') : ?>
-                                                    if(row.id==   <?= $loginAdminId ?>)
-                                                        return "<button  class='btn btn-danger delete' id="+row.id+"> Delete </button>"
-                                                    else
-                                                        return "No action";  
-                                        <?php else:  ?>
+                                    render : function(data,type,row){                                        
                                                 return "<button  class='btn btn-danger delete' id="+row.id+"> Delete </button>"
-                                        <?php endif   ?>
-                                        
                                     }
                                 }
                             ]

@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-xs-8 col-sm-8 col-md-8">
         <div class="form-group">
@@ -18,6 +19,7 @@
            <input type='number' name='price' value="" class='form-control'>
            <input type='hidden' name='employee_id' value="{{Auth::guard('employee')->user()->id}}" >
         </div>
+
     </div>
     
     <div class="col-xs-8 col-sm-8 col-md-8">

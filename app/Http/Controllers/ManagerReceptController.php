@@ -10,10 +10,11 @@ use Auth;
 
 class ManagerReceptController extends Controller
 {
-    public function index(){
+    
+    public function index(){           
         $user = Auth::guard('employee')->user();
         $loginAdminId = $user->id;
-        $loginAdminRole = $user->getRoleNames();
+        $loginAdminRole = $user->getRoleNames()[0];
         return view('admin.Receptionists.index' , compact('loginAdminRole', 'loginAdminId'));
     }
 
@@ -36,10 +37,12 @@ class ManagerReceptController extends Controller
             'National_ID' => 'required',
             'Gender' => 'required',
         ]);
-        $path = $request->image->store('public');
+        $path = $request->image->store('public/images');
         $Recept  = new Employee;
-        $Recept->fill($request->except("image"));
+    
+        $Recept->fill($request->except( ["image" , "employee_id"] ));
         $Recept->image = $path;
+        $Recept->employee_id =Auth::guard('employee')->user()->id;
         $Recept->password = bcrypt($request->password);
         $Recept->save();
         $Recept->assignRole('Receptionist');

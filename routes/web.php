@@ -17,7 +17,19 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-return view('index');    
+  // $emp  = Employee::find(3)->assignRole('Admin');
+  // $emp = new Employee;
+  // $emp->name = 'khaled';
+  // $emp->email = 'khaled@khaled.com';
+  // $emp->password = bcrypt('123456');
+  // $emp->employee_id = 0;
+  // $emp->image ='image';
+  // $emp->National_id = '122223345678';
+  // $emp->save();
+
+
+return view('index'); 
+
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
@@ -47,6 +59,15 @@ Route::post('Receptionists/store', 'ManagerReceptController@store')->name('Recep
 Route::get('Receptionists/{id}/edit','ManagerReceptController@edit')->name('Receptionists.edit');
 Route::patch('Receptionists/{id}/update', 'ManagerReceptController@update')->name('Receptionists.update');
 Route::post('Receptionists/delete','ManagerReceptController@delete')->name('Receptionists.delete');
+
+
+Route::get('Managers', 'ManagerManagerController@index')->name('Managers.index');
+Route::get('ManagersData', 'ManagerManagerController@get_data')->name('ManagersData');
+Route::get('Managers/create', 'ManagerManagerController@create')->name('Managers.create');
+Route::post('Managers/store', 'ManagerManagerController@store')->name('Managers.store');
+Route::get('Managers/{id}/edit','ManagerManagerController@edit')->name('Managers.edit');
+Route::patch('Managers/{id}/update', 'ManagerManagerController@update')->name('Managers.update');
+Route::post('Managers/delete','ManagerManagerController@delete')->name('Managers.delete');
 
 Route::get('floors', 'ManagerFloorController@index')->name('floors.index');
 Route::get('floorsData', 'ManagerFloorController@get_data')->name('floorsData');
@@ -81,7 +102,7 @@ Route::get('admin/', 'DashboardController@index')->name('dashboard');
 // data pages only which are then used by ajax from blades
 Route::get('admin/receptionists/show','UsersController@get_data')->name('clients.index.dataTables');
 Route::get('admin/receptionists/show/approved','UsersController@get_data_approved')->name('clients.approvedIndex.dataTables');
-Route::get('admin/receptionists/show/reservation','UsersController@get_data_reserved')->name('clients.reservation.dataTables');
+Route::get('admin/receptionists/show/reservation','UsersController@get_data_reserved')->name('clients.myreservation.dataTables');
 //receptionist blades using datapages using ajax
 Route::get('admin/receptionists','UsersController@index')->name('clients.pending');
 Route::get('admin/receptionists/approved','UsersController@approvedIndex')->name('clients.approved');
@@ -112,7 +133,7 @@ Route::group(['prefix' => 'employee'], function () {
 Route::group(['prefix' => 'user'], function () {
   Route::get('/login', 'UserAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'UserAuth\LoginController@login');
-  Route::post('/logout', 'UserAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'UserAuth\LoginController@logout')->name('employeelogout');
 
   Route::get('/register', 'UserAuth\RegisterController@showRegistrationForm')->name('register');
   Route::post('/register', 'UserAuth\RegisterController@register');
