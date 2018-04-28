@@ -38,7 +38,7 @@ class Employee extends Authenticatable  implements BannableContract
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'image', 'National_ID', 'employee_id'
     ];
 
     /**

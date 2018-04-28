@@ -15,7 +15,9 @@ class admin extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('123456'),
-            'National_ID' => '1234567899999',
+            'National_ID' => mt_rand(10000000000 , 99999999999),
+            'image' => '3.jpg',
+            'employee_id' => 1
         ]);
     }
 }

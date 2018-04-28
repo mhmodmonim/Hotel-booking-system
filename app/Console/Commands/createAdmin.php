@@ -46,8 +46,9 @@ class createAdmin extends Command
             'name' => $adminName,
             'password' => Hash::make($adminPass),
             'email' => $adminName,
-            'National_ID' => null,
-            'image' => null,
+            'National_ID' => mt_rand(10000000000 , 99999999999),
+            'image' => 'public/images/3.jpg',
+            'employee_id' => 1
         ]);
         $this->info('Done');
     }
