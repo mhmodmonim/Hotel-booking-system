@@ -32,6 +32,7 @@ return [
 
         'sync' => [
             'driver' => 'sync',
+            'queue' => 'default',
         ],
 
         'database' => [

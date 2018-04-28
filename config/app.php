@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Hotel website'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+    'debug' => env('APP_DEBUG', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -146,7 +146,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        Collective\Html\HtmlServiceProvider::class,
+        
         /*
          * Package Service Providers...
          */
@@ -159,7 +160,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        Spatie\Permission\PermissionServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*
@@ -208,7 +212,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-    ],
+        'Spatie' =>     Spatie\Permission\PermissionServiceProvider::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+        'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => \Tymon\JWTAuth\Facades\JWTFactory::class,
+        ],
 
 ];
