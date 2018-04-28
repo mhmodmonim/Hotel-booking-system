@@ -71,7 +71,10 @@ class UsersController extends Controller
     public function edit($id , InvoicePaid $invoice)
     {
         $user = User::find($id);
+        $permisionExist = DB::table('permissions')->where('name','=','Approved')->get();
+        if(! $permisionExist){
         $permission = Permission::create(['name' => 'Approved']);
+        }
         $user->givePermissionTo('Approved');
         $user->sendEmailNotification($invoice);
         return redirect('admin/receptionists');
