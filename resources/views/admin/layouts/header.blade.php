@@ -56,6 +56,7 @@ desired effect
 |---------------------------------------------------------|
 -->
 <body class="hold-transition skin-blue sidebar-mini">
+
 <div class="wrapper">
 
     <!-- Main Header -->
@@ -94,6 +95,7 @@ desired effect
                                         <a href="#">
                                             <div class="pull-left">
                                                 <!-- User Image -->
+                                             
                                                 <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
@@ -179,7 +181,7 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{asset("bower_components/admin-lte/dist/img/user2-160x160.jpg")}}" class="user-image" alt="User Image">
+                            <img src="{{  asset("public/zamalek.png")}}" class="user-image"  >
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">  {{ ucfirst( Auth::guard('employee')->user()->name ) }}</span>
                         </a>
@@ -219,7 +221,7 @@ desired effect
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('employeelogout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>                                </div>
                             </li>
@@ -232,4 +234,4 @@ desired effect
                 </ul>
             </div>
         </nav>
-    </header>
+</header>

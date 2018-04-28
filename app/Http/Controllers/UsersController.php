@@ -66,8 +66,7 @@ class UsersController extends Controller
         return $editor->process(request());
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         $user = User::find($id);
         $user->givePermissionTo('Approved');
         return redirect('admin/receptionists');

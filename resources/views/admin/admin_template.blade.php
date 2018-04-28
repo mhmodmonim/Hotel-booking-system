@@ -29,4 +29,14 @@
 </div>
 <!-- /.content-wrapper -->
 
+   
+
+    <!--------------------------
+          | Your Page Content Here |
+          -------------------------->
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
 @include('admin.layouts.footer')

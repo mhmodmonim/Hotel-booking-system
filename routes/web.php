@@ -1,10 +1,10 @@
 <?php
 
-
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\User;
 use App\Employee;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +17,75 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-    return view('index');
+    // $user = new User;
+    // $user->name ="khaled2";  
+    // $user->email ="khaled2"; 
+    // $user->mobile ="12345678901234"; 
+    // $user->password =bcrypt("123456"); 
+    // $user->image ="image2";
+    // $user->country ="egypt2";
+    // $user->gender ="male2";
+    // $user->employee_id =1;
+    // $user->save();
+    //Permission::create(['name' => 'Approved']);
+    $client = User::find(1)->givePermissionTo('Approved');
+    //Role::create([])
+    
+    
+        
+      
+  // $emp1 = Employee::find(1)->assignRole('Admin');
+  // $emp2 = Employee::find(2)->assignRole('Manager');
+  // $emp3 = Employee::find(3)->assignRole('Receptionist');
+
+
+    
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
-
+Auth::routes();
 Route::get('admin', function () {
    return view('admin.index');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::get('clients', 'ManagerController@index')->name('clients.index');
+Route::get('clientsData', 'ManagerController@get_data')->name('clientsData');
+Route::get('clients/create', 'ManagerController@create')->name('clients.create');
+Route::post('clients/store', 'ManagerController@store')->name('clients.store');
+Route::get('clients/{id}/Edit','ManagerController@edit')->name('clients.Edit');
+Route::patch('clients/{id}/update', 'ManagerController@update')->name('clients.update');
+Route::post('clients/delete','ManagerController@delete')->name('clients.destroy');
+
+
+Route::get('Receptionists', 'ManagerReceptController@index')->name('Receptionists.index');
+Route::get('ReceptionistsData', 'ManagerReceptController@get_data')->name('ReceptionistsData');
+Route::post('Receptionists/{id}/ban', 'ManagerReceptController@Ban')->name('Receptionists.ban');
+Route::get('Receptionists/create', 'ManagerReceptController@create');
+Route::post('Receptionists/ban', 'ManagerReceptController@Ban')->name('Receptionists.ban');
+Route::post('Receptionists/store', 'ManagerReceptController@store')->name('Receptionists.store');
+Route::get('Receptionists/{id}/edit','ManagerReceptController@edit')->name('Receptionists.edit');
+Route::patch('Receptionists/{id}/update', 'ManagerReceptController@update')->name('Receptionists.update');
+Route::post('Receptionists/delete','ManagerReceptController@delete')->name('Receptionists.delete');
+
+Route::get('floors', 'ManagerFloorController@index')->name('floors.index');
+Route::get('floorsData', 'ManagerFloorController@get_data')->name('floorsData');
+Route::get('floors/create', 'ManagerFloorController@create');
+Route::post('floors/store', 'ManagerFloorController@store')->name('floors.store');
+Route::get('floors/{id}/edit','ManagerFloorController@edit')->name('floors.edit');
+Route::patch('floors/{id}/update', 'ManagerFloorController@update')->name('floors.update');
+Route::post('floors/delete','ManagerFloorController@delete')->name('floors.delete');
+
+Route::get('rooms', 'ManagerRoomController@index')->name('rooms.index');
+Route::get('roomsData', 'ManagerRoomController@get_data')->name('roomsData');
+Route::get('rooms/create', 'ManagerRoomController@create');
+Route::post('rooms/store', 'ManagerRoomController@store')->name('rooms.store');
+Route::get('rooms/{id}/edit','ManagerRoomController@edit')->name('rooms.edit');
+Route::patch('rooms/{id}/update', 'ManagerRoomController@update')->name('rooms.update');
+Route::post('rooms/delete','ManagerRoomController@delete')->name('rooms.delete');
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');

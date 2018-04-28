@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignKeyOfFloorsToRommsTable extends Migration
+class AddForeignKeyEmployeeIdToFloorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddForeignKeyOfFloorsToRommsTable extends Migration
      */
     public function up()
     {
-        Schema::table('rooms', function (Blueprint $table) {
-            $table->unsignedInteger('floor_id');
-            $table->foreign('floor_id')->references('id')->on('floors');
+        Schema::table('floors', function (Blueprint $table) {
+            $table->unsignedInteger('employee_id');
+            $table->foreign('employee_id')->references('id')->on('employees');
         });
     }
 
@@ -26,7 +26,6 @@ class AddForeignKeyOfFloorsToRommsTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['rooms_floor_id_foreign']);
-        $table->dropColumn('floor_id');
+        //
     }
 }
