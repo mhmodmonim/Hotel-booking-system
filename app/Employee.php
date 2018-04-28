@@ -5,7 +5,13 @@ namespace App;
 use App\Notifications\EmployeeResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Ban\Bannable as BannableContract;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Traits\HasRoles;
+use Cog\Laravel\Ban\Traits\Bannable;
+use App\User;
+use App\Floor;
+use App\Employee;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Tymon\JWTAuth\Contracts\JWTSubject;
@@ -19,12 +25,13 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Employee role($roles)
  * @mixin \Eloquent
  */
-class Employee extends Authenticatable
 
+
+class Employee extends Authenticatable  implements BannableContract
 {
-    use Notifiable,HasRoles;
-
+    use Notifiable , HasRoles , Bannable;
     protected $guard_name = 'web';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -53,4 +60,18 @@ class Employee extends Authenticatable
     {
         $this->notify(new EmployeeResetPassword($token));
     }
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+    public function employees(){
+        return $this->hasMany(Employee::class);
+    }
+    public function employee(){
+    return $this->belongsTo(Employee::class);
+    }
+    public function floors(){
+        return $this->hasMany(Floor::class);
+    }
+
 }

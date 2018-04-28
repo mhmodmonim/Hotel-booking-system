@@ -41,12 +41,11 @@ class User extends Authenticatable implements JWTSubject
 
 
     protected $fillable = [
-
         'name', 'email', 'password', 'mobile', 'gender', 'country', 'image' , 'lastLogin'
         ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that should be    hidden for arrays.
      *
      * @var array
      */
@@ -64,10 +63,12 @@ class User extends Authenticatable implements JWTSubject
     {
         $this->notify(new UserResetPassword($token));
     }
+    public function employee(){
+        return $this->belongsTo(Employee::class);
+    }
 
-    public function run()
-    {
-        $permission = Permission::create(['name' => 'Approved']);
+    public function run(){
+        //$permission = Permission::create(['name' => 'Approved']);
     }
 
     public function sendEmailNotification($invoice)

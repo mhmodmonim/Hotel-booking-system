@@ -3,12 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
 class Room extends Model
 {
-    public function getPriceAttribute($value)
-    {
-
-        return number_format(($value /100), 2, '.', ',');
+    protected $fillable =[
+        'number',
+        'capacity',
+         'price',
+         'image',
+         'floor_id',
+    ];
+    public function floor(){
+        return $this->belongsTo(Floor::class);
+    }
+    public function getpriceAttribute($val){ 
+        return ($val*0.01).'$' ;    
     }
 }

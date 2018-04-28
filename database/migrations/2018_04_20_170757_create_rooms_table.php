@@ -18,6 +18,10 @@ class CreateRoomsTable extends Migration
             $table->integer('number');
             $table->integer('capacity');
             $table->integer('price');
+            $table->unsignedInteger('employee_id');
+            $table->unsignedInteger('floor_id');
+            //$table->foreign('floor_id')->references('id')->on('floors');
+            //$table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }
