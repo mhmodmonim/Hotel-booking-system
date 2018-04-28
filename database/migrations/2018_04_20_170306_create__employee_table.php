@@ -22,6 +22,7 @@ class CreateEmployeeTable extends Migration
             $table->string('image');
             $table->string('National_ID');
             $table->date('lastLogin')->nullable();
+            $table->Integer('employee_id');
             //$table->unsignedInteger('employee_id');
             //$table->foreign('employee_id')->references('id')->on('employees');
             $table->rememberToken();
