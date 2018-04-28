@@ -1,3 +1,4 @@
+
 <div class="row">
     <div class="col-xs-8 col-sm-8 col-md-8">
         <div class="form-group">
@@ -15,8 +16,8 @@
     <div class="col-xs-8 col-sm-8 col-md-8">
         <div class="form-group">
             <label>price</label>
-           <input type='number' name='price' value="{{intval($room->price)*100 }}" class='form-control'>
-        </div>
+           <input type='text' name='price' value="<?= (isset($room->price)?intval($room->price)*100:'')?>" class='form-control'>
+        </div>                                     
     </div>
     
     <div class="col-xs-8 col-sm-8 col-md-8">

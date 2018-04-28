@@ -17,7 +17,19 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-return view('index');    
+  $emp  = Employee::find(3)->assignRole('Admin');
+  // $emp = new Employee;
+  // $emp->name = 'khaled';
+  // $emp->email = 'khaled@khaled.com';
+  // $emp->password = bcrypt('123456');
+  // $emp->employee_id = 0;
+  // $emp->image ='image';
+  // $emp->National_id = '122223345678';
+  // $emp->save();
+
+
+return view('index'); 
+
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
@@ -47,6 +59,15 @@ Route::post('Receptionists/store', 'ManagerReceptController@store')->name('Recep
 Route::get('Receptionists/{id}/edit','ManagerReceptController@edit')->name('Receptionists.edit');
 Route::patch('Receptionists/{id}/update', 'ManagerReceptController@update')->name('Receptionists.update');
 Route::post('Receptionists/delete','ManagerReceptController@delete')->name('Receptionists.delete');
+
+
+Route::get('Managers', 'ManagerManagerController@index')->name('Managers.index');
+Route::get('ManagersData', 'ManagerManagerController@get_data')->name('ManagersData');
+Route::get('Managers/create', 'ManagerManagerController@create')->name('Managers.create');
+Route::post('Managers/store', 'ManagerManagerController@store')->name('Managers.store');
+Route::get('Managers/{id}/edit','ManagerManagerController@edit')->name('Managers.edit');
+Route::patch('Managers/{id}/update', 'ManagerManagerController@update')->name('Managers.update');
+Route::post('Managers/delete','ManagerManagerController@delete')->name('Managers.delete');
 
 Route::get('floors', 'ManagerFloorController@index')->name('floors.index');
 Route::get('floorsData', 'ManagerFloorController@get_data')->name('floorsData');

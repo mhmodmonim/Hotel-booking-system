@@ -16,7 +16,7 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Created At</th>
-                    @if($loginAdminRole['0'] == 'Admin')
+                    @if($loginAdminRole == 'Admin')
                     <th>manager name </th>
                     @endif
                     <th>Edit</th>
@@ -48,8 +48,7 @@
                                 'url': '{{ route("Receptionists.ban") }}' ,
                                 'data':{ 'id':buttonId , '_token':'{{ csrf_token()}}' }  ,
                                  'method' : 'POST',
-                                 'success':function(res){
-                                    $("#users-table").DataTable().ajax().reload();
+                                 'success':function(res){  
                                      console.log("success")
                                      var btnBan =$('#'+buttonId+'.Ban');
                                      if(res.statusBan){
@@ -72,7 +71,7 @@
                                 { data: 'name', name: 'name' },
                                 { data: 'email', name: 'email' },
                                 { data: 'created_at', name: 'created_at' },
-                            <?php if($loginAdminRole['0'] == 'Admin'): ?>
+                            <?php if($loginAdminRole == 'Admin'): ?>
                                 { data: 'employee.name', name: 'employee.name' },
                             <?php endif ?>
 
@@ -87,7 +86,7 @@
                                         //here i replaced the hashed string with real id
                                         var realEditRoute= mockedEditRoute.replace('#replaceMeWithUserId',row.id);
                                         //then here i returned the real url with id
-                                        <?php if($loginAdminRole['0'] == 'Receptionist') : ?>
+                                        <?php if($loginAdminRole == 'Receptionist') : ?>
                                                 if(row.id==   <?= $loginAdminId ?>)
                                                 return "<a href='"+realEditRoute+"' class='btn btn-primary' id="+row.id+" > Edit </a>"
                                                 else
@@ -101,7 +100,7 @@
                                     orderable :false,
                                     searchable : false,
                                     render : function(data,type,row){
-                                        <?php if($loginAdminRole['0'] == 'Receptionist') : ?>
+                                        <?php if($loginAdminRole == 'Receptionist') : ?>
                                                 if(row.id==   <?= $loginAdminId ?>)
                                                     return "<button  class='btn btn-danger delete' id="+row.id+"> Delete </button>"
                                                 else
@@ -114,7 +113,7 @@
                                     orderable :false,
                                     searchable : false,
                                     render : function(data,type,row){
-                                        <?php if($loginAdminRole['0'] == 'Receptionist') : ?>
+                                        <?php if($loginAdminRole == 'Receptionist') : ?>
                                                     if(row.id==   <?= $loginAdminId ?>)
                                                         if(row.banned_at){
                                                                 return "<button class='btn btn-danger Ban' id="+row.id+"> unBan </button>"                                        
@@ -130,8 +129,6 @@
                                                 return "<button class='btn btn-danger Ban' id="+row.id+"> Ban </button>"                                        
                                                             }
                                         <?php endif   ?>
-                                        
-                                       
                                     }
                                 }
                             ]

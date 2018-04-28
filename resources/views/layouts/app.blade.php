@@ -1,4 +1,3 @@
-
 @include('layouts.header')
 @include('layouts.side')
 @yield('content')

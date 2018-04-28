@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use \App\Employee;
 use App\Room;
 use App\Floor;
+use Auth;
 
 use Storage;
 
@@ -21,6 +22,7 @@ class ManagerRoomController extends Controller
     }   
     public function delete(Request $request){
         if($request->ajax()){
+            
             $Rooms =Room::findOrFail($request->id)->delete();
             return response()->json([
                 'res' => 'Room deleted successfully'
@@ -38,7 +40,13 @@ class ManagerRoomController extends Controller
             'capacity' => 'required',
             'floor_id'=>'required',
         ]);
-         $room = Room::create($request->all());    
+         $room = new Room;
+         $room->number = $request->number;
+         $room->price = $request->price;
+         $room->capacity = $request->capacity;
+         $room->floor_id = $request->floor_id;
+         $room->employee_id = Auth::guard('employee')->user()->id  ;
+         $room->save();
         return redirect()->route('rooms.index')->
                 with('success','Room  added successfully');
     }
