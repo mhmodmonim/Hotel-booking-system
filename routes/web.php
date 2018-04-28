@@ -17,19 +17,7 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-  // $emp  = Employee::find(3)->assignRole('Admin');
-  // $emp = new Employee;
-  // $emp->name = 'khaled';
-  // $emp->email = 'khaled@khaled.com';
-  // $emp->password = bcrypt('123456');
-  // $emp->employee_id = 0;
-  // $emp->image ='image';
-  // $emp->National_id = '122223345678';
-  // $emp->save();
-
-
-return view('index'); 
-
+  return view('index'); 
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
