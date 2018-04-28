@@ -80,7 +80,7 @@ class UsersController extends Controller
     public function delete($id)
     {
         User::where('id',$id)->delete();
-        return Redirect(route('clients.pending'));
+        return response()->json(['status' => true]);
     }
 
     public function loginCheck($id)
