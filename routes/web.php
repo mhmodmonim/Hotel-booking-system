@@ -17,7 +17,7 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-  $emp  = Employee::find(3)->assignRole('Admin');
+  // $emp  = Employee::find(3)->assignRole('Admin');
   // $emp = new Employee;
   // $emp->name = 'khaled';
   // $emp->email = 'khaled@khaled.com';
@@ -102,7 +102,7 @@ Route::get('admin/', 'DashboardController@index')->name('dashboard');
 // data pages only which are then used by ajax from blades
 Route::get('admin/receptionists/show','UsersController@get_data')->name('clients.index.dataTables');
 Route::get('admin/receptionists/show/approved','UsersController@get_data_approved')->name('clients.approvedIndex.dataTables');
-Route::get('admin/receptionists/show/reservation','UsersController@get_data_reserved')->name('clients.reservation.dataTables');
+Route::get('admin/receptionists/show/reservation','UsersController@get_data_reserved')->name('clients.myreservation.dataTables');
 //receptionist blades using datapages using ajax
 Route::get('admin/receptionists','UsersController@index')->name('clients.pending');
 Route::get('admin/receptionists/approved','UsersController@approvedIndex')->name('clients.approved');
