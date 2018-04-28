@@ -12,6 +12,10 @@ use Cog\Laravel\Ban\Traits\Bannable;
 use App\User;
 use App\Floor;
 use App\Employee;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+
 /**
  * App\Employee
  *
@@ -66,8 +70,7 @@ class Employee extends Authenticatable  implements BannableContract
     public function employee(){
     return $this->belongsTo(Employee::class);
     }
-    public function floors()
-    {
+    public function floors(){
         return $this->hasMany(Floor::class);
     }
 

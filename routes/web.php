@@ -17,29 +17,7 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-    // $user = new User;
-    // $user->name ="khaled2";  
-    // $user->email ="khaled2"; 
-    // $user->mobile ="12345678901234"; 
-    // $user->password =bcrypt("123456"); 
-    // $user->image ="image2";
-    // $user->country ="egypt2";
-    // $user->gender ="male2";
-    // $user->employee_id =1;
-    // $user->save();
-    //Permission::create(['name' => 'Approved']);
-    $client = User::find(1)->givePermissionTo('Approved');
-    //Role::create([])
-    
-    
-        
-      
-  // $emp1 = Employee::find(1)->assignRole('Admin');
-  // $emp2 = Employee::find(2)->assignRole('Manager');
-  // $emp3 = Employee::find(3)->assignRole('Receptionist');
-
-
-    
+return view('index');    
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
@@ -86,9 +64,21 @@ Route::post('rooms/store', 'ManagerRoomController@store')->name('rooms.store');
 Route::get('rooms/{id}/edit','ManagerRoomController@edit')->name('rooms.edit');
 Route::patch('rooms/{id}/update', 'ManagerRoomController@update')->name('rooms.update');
 Route::post('rooms/delete','ManagerRoomController@delete')->name('rooms.delete');
+Route::get('profile/edit', 'UserProfile@index')->name('userprofile');
+Route::post('profile/{id}', 'UserProfile@update')->name('profile.update');
+
+Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
+Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
+Route::get('client/reservation/data', 'ClientReservations@get_data')->name('client.reservation.data');
+Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
+
+//route employees from the home page to admin area
+Route::get('admin/', 'DashboardController@index')->name('dashboard');
+
+
 // data pages only which are then used by ajax from blades
 Route::get('admin/receptionists/show','UsersController@get_data')->name('clients.index.dataTables');
 Route::get('admin/receptionists/show/approved','UsersController@get_data_approved')->name('clients.approvedIndex.dataTables');
@@ -113,6 +103,7 @@ Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'EmployeeAuth\LoginController@login');
   Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
+  Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogoutlogout');
 
   Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email');

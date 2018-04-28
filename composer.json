@@ -17,6 +17,8 @@
         "rinvex/country": "^3.1",
         "spatie/laravel-permission": "^2.11",
         "yajra/laravel-datatables-editor": "^1.1",
+        "cartalyst/stripe-laravel": "8.0.*",
+        "tymon/jwt-auth": "dev-develop",
         "yajra/laravel-datatables-oracle": "~8.0"
     },
     "require-dev": {

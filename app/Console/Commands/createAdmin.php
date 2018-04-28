@@ -51,4 +51,5 @@ class createAdmin extends Command
         ]);
         $this->info('Done');
     }
+
 }

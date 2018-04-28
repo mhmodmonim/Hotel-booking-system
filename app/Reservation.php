@@ -8,14 +8,21 @@ class Reservation extends Model
 {
 
     protected $table = 'reservation';
+    protected $fillable = [
+
+        'paidPrice', 'user_id', 'room_id', 'employee_id','clientAccompanyNumber'
+    ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+
+        return $this->hasOne(User :: class);
+
     }
 
     public function room()
     {
-        return $this->belongsTo(Room::class);
+        return $this->hasMany(Room :: class);
+
     }
 }

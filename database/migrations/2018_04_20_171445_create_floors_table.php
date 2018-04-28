@@ -17,6 +17,8 @@ class CreateFloorsTable extends Migration
             $table->increments('id');
             $table->integer('number');
             $table->string('name');
+            //$table->unsignedInteger('employee_id');
+            //$table->foreign('employee_id')->references('id')->on('employees');
             $table->timestamps();
         });
     }

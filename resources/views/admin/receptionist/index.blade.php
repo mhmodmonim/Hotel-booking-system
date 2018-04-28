@@ -9,10 +9,10 @@
             <table class="table table-bordered" id="users-table">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Mobile</th>
+                    <th>Country</th>
                     <th>Gender</th>
                     <th>Confirm</th>
                 </tr>
@@ -26,10 +26,10 @@
                             serverSide: true,
                             ajax: '{{route('clients.index.dataTables')}}',
                             columns: [
-                                { data: 'id', name: 'id' },
                                 { data: 'name', name: 'name' },
                                 { data: 'email', name: 'email' },
                                 { data: 'mobile', name: 'mobile' },
+                                { data: 'country', name: 'country' },
                                 { data: 'gender', name: 'gender' },
                                 {
                                     orderable :false,
@@ -49,13 +49,20 @@
                                         var realDeleteRoute= mockedDeleteRoute.replace('#replaceMeWithUserId',row.id);  
 
                                         //then here i returned the real url with id
-                                        return "<a href='"+realEditRoute+"' class='btn btn-primary' style='margin-right:5px'> approve </a><a href='"+realDeleteRoute+"' class='btn btn-danger '> decline </a>"
+                                        return "<a href='"+realEditRoute+"' class='btn btn-primary' style='margin-right:5px'> approve </a><button onclick="getMessage()" class='btn btn-danger'>decline</button>"
                                     }
                                 }
                                 
                             ]
                         });
                     });
+                    function getMessage(){
+                        $.ajax({
+                            type:'get',
+                            url: realDeleteRoute,
+                            data: 
+                        });
+                    }
                 </script>
 
 @endsection

@@ -16,6 +16,6 @@ class Room extends Model
         return $this->belongsTo(Floor::class);
     }
     public function getpriceAttribute($val){ 
-        return ($val*0.01).'$' ;
+        return ($val*0.01).'$' ;    
     }
 }

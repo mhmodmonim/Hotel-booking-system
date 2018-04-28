@@ -26,6 +26,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: '{{route('employees.index.dataTables')}}',
+
                 columns: [
                     {data: 'id', name: 'id'},
                     {data: 'name', name: 'name'},

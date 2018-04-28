@@ -10,6 +10,12 @@ use Spatie\Permission\Models\Permission;
 use DB;
 use DataTables;
 use Yajra\DataTables\QueryDataTable;
+use App\Notifications\InvoicePaid;
+use App\Events\LoginEvent;
+use Illuminate\Auth\Events\Login;
+use App\Notifications\Sheduled;
+
+
 
 
 class UsersController extends Controller
@@ -34,12 +40,8 @@ class UsersController extends Controller
         $query = DB::table('users')
                     ->whereNotIn('id', DB::table('model_has_permissions')->select('model_id'))
                     ->get();
-        //$query = DB::table('model_has_permissions')->leftJoin('users', 'model_has_permissions.model_id', '=', 'users.id')->get();
-        // dd($query);
         return DataTables::of($query)->toJson();
-        // return datatables(User::query())->toJson();
-        //return datatables()->query(DB::table('users')->join('model_has_permissions', 'users.id', '=', 'model_has_permissions.model_id')->get())->toJson();
-        //return datatables()->of(DB::table('users'))->toJson();
+
 
     }
 
@@ -51,13 +53,13 @@ class UsersController extends Controller
 
     public function get_data_reserved()
     {
+        $user = Auth::guard(employee)->user()->id();
         $query = DB::table('reservation')
             ->join('users', 'reservation.user_id', '=', 'users.id')
             ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
             ->select('reservation.paidPrice','reservation.clientAccompanyNumber','rooms.number' , 'users.name')
-            ->where('users.employee_id', '=', 3)
+            ->where('users.employee_id', '=', $user)
             ->get();
-        //$query = DB::table('reservation')->select('paidPrice','clientAccompanyNumber') ;
         return DataTables::of($query)->toJson();
     }
 
@@ -66,9 +68,12 @@ class UsersController extends Controller
         return $editor->process(request());
     }
 
-    public function edit($id){
+    public function edit($id , InvoicePaid $invoice)
+    {
         $user = User::find($id);
+        $permission = Permission::create(['name' => 'Approved']);
         $user->givePermissionTo('Approved');
+        $user->sendEmailNotification($invoice);
         return redirect('admin/receptionists');
     }
 
@@ -76,6 +81,12 @@ class UsersController extends Controller
     {
         User::where('id',$id)->delete();
         return Redirect(route('clients.pending'));
+    }
+
+    public function loginCheck($id)
+    {
+        $user = User::find($id);
+        event(new Login($user));
     }
 
 }

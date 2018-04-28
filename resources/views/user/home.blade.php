@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                     You are logged in as User!
-               {{ dd(Auth::User())}};
+               <!-- {{ dd(Auth::User())}}; -->
                 </div>
             </div>
         </div>

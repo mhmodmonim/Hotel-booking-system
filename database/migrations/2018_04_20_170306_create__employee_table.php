@@ -16,10 +16,15 @@ class CreateEmployeeTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->timestamp('banned_at')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image');
             $table->string('National_ID');
+            $table->date('lastLogin')->nullable();
+            //$table->unsignedInteger('employee_id');
+            //$table->foreign('employee_id')->references('id')->on('employees');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class RegisterController extends Controller
@@ -74,9 +75,11 @@ class RegisterController extends Controller
         $request = app('request');
 
         if(empty($data['image'])){
-            $data['image']="public/images/1.jpg";
+            $data['image']="1.jpg";
         }else{
-            $data['image']=$request->image->store('public');
+            $image=$request->image->getClientOriginalName();
+
+            Storage::putFileAs('public/images', $data['image'], $image);
         }
 
         return User::create([
@@ -86,7 +89,7 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
             'country' => $data['country'],
             'gender' => $data['gender'],
-            'image' => $data['image'],
+            'image' => $image,
         ]);
        
     }
