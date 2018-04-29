@@ -30,26 +30,25 @@ Route::get('admin', function () {
 
 //added section
 Route::get('employee', function () {
-  return view('user.auth.login');
+  return view('employee.auth.login');
 });
 
 Route::get('manager', function () {
-  return view('user.auth.login');
+  return view('employee.auth.login');
 });
 
 Route::get('receptionist', function () {
-  return view('user.auth.login');
+  return view('employee.auth.login');
 });
 
 Route::get('user', function () {
-  return view('user.auth.login');
+  return view('employee.auth.login');
 });
 
 //end added section
 
 Route::group([
-  'middleware'=>'auth:employee'
-
+  'middleware'=>'employees'
 ],
 function () {
 
@@ -62,6 +61,10 @@ Route::patch('clients/{id}/update', 'ManagerController@update')->name('clients.u
 Route::post('clients/delete','ManagerController@delete')->name('clients.destroy');
 
 
+Route::group([
+  'middleware'=>'employees','role:admin|manager'
+],
+function () {
 Route::get('Receptionists', 'ManagerReceptController@index')->name('Receptionists.index');
 Route::get('ReceptionistsData', 'ManagerReceptController@get_data')->name('ReceptionistsData');
 Route::post('Receptionists/{id}/ban', 'ManagerReceptController@Ban')->name('Receptionists.ban');
@@ -71,15 +74,6 @@ Route::post('Receptionists/store', 'ManagerReceptController@store')->name('Recep
 Route::get('Receptionists/{id}/edit','ManagerReceptController@edit')->name('Receptionists.edit');
 Route::patch('Receptionists/{id}/update', 'ManagerReceptController@update')->name('Receptionists.update');
 Route::post('Receptionists/delete','ManagerReceptController@delete')->name('Receptionists.delete');
-
-
-Route::get('Managers', 'ManagerManagerController@index')->name('Managers.index');
-Route::get('ManagersData', 'ManagerManagerController@get_data')->name('ManagersData');
-Route::get('Managers/create', 'ManagerManagerController@create')->name('Managers.create');
-Route::post('Managers/store', 'ManagerManagerController@store')->name('Managers.store');
-Route::get('Managers/{id}/edit','ManagerManagerController@edit')->name('Managers.edit');
-Route::patch('Managers/{id}/update', 'ManagerManagerController@update')->name('Managers.update');
-Route::post('Managers/delete','ManagerManagerController@delete')->name('Managers.delete');
 
 Route::get('floors', 'ManagerFloorController@index')->name('floors.index');
 Route::get('floorsData', 'ManagerFloorController@get_data')->name('floorsData');
@@ -96,7 +90,20 @@ Route::post('rooms/store', 'ManagerRoomController@store')->name('rooms.store');
 Route::get('rooms/{id}/edit','ManagerRoomController@edit')->name('rooms.edit');
 Route::patch('rooms/{id}/update', 'ManagerRoomController@update')->name('rooms.update');
 Route::post('rooms/delete','ManagerRoomController@delete')->name('rooms.delete');
+});
 
+Route::group([
+  'middleware'=>'employees','role:admin'
+],
+function () {
+Route::get('Managers', 'ManagerManagerController@index')->name('Managers.index');
+Route::get('ManagersData', 'ManagerManagerController@get_data')->name('ManagersData');
+Route::get('Managers/create', 'ManagerManagerController@create')->name('Managers.create');
+Route::post('Managers/store', 'ManagerManagerController@store')->name('Managers.store');
+Route::get('Managers/{id}/edit','ManagerManagerController@edit')->name('Managers.edit');
+Route::patch('Managers/{id}/update', 'ManagerManagerController@update')->name('Managers.update');
+Route::post('Managers/delete','ManagerManagerController@delete')->name('Managers.delete');
+});
 
 Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
 Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
@@ -124,11 +131,8 @@ Route::get('admin/add/{id}','UsersController@store');
 Route::get('clients/{id}/edit','UsersController@edit')->name('clients.edit');
 Route::get('clients/{id}/delete','UsersController@delete')->name('clients.delete');
 Route::get('employess/{id}/edit','EmployeesController@edit')->name('employees.edit');
-
 });
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');

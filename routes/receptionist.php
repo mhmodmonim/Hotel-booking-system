@@ -5,8 +5,6 @@ Route::get('/receptionist', function () {
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('employee')->user();
 
-    //dd($users);
-
-    return view('user.auth.login');
+    return view('employee.auth.login');
 })->name('receptionist');
 
