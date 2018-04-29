@@ -20,6 +20,8 @@ Route::get('/', function () {
 return view('index'); 
 
 })->name('home');
+Route::get('profile/edit', 'UserProfile@index')->name('userprofile');
+Route::post('profile/{id}', 'UserProfile@update')->name('profile.update');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
 Route::get('admin', function () {
@@ -94,8 +96,7 @@ Route::post('rooms/store', 'ManagerRoomController@store')->name('rooms.store');
 Route::get('rooms/{id}/edit','ManagerRoomController@edit')->name('rooms.edit');
 Route::patch('rooms/{id}/update', 'ManagerRoomController@update')->name('rooms.update');
 Route::post('rooms/delete','ManagerRoomController@delete')->name('rooms.delete');
-Route::get('profile/edit', 'UserProfile@index')->name('userprofile');
-Route::post('profile/{id}', 'UserProfile@update')->name('profile.update');
+
 
 Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
 Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
