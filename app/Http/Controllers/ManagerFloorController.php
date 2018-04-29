@@ -8,6 +8,10 @@ use Auth;
 
 class ManagerFloorController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware(['role:Admin|Manager|Receptionist']);
+    }
     public function index(){
         $user = Auth::guard('employee')->user();
         $loginAdminId = $user->id;

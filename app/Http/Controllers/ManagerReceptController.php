@@ -12,7 +12,7 @@ class ManagerReceptController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:Admin|Manager',]);
+        //$this->middleware(['role:Admin|Manager']);
     }
     
     public function index(){

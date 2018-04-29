@@ -61,11 +61,6 @@ Route::patch('clients/{id}/update', 'ManagerController@update')->name('clients.u
 Route::post('clients/delete','ManagerController@delete')->name('clients.destroy');
 
 
-Route::group([
-  'middleware'=>'employees','role' => 'Admin|Manager'
-],
-function () {
-});
 
 Route::group(['middleware'=>'employees'],function () {
     Route::get('Managers', 'ManagerManagerController@index')->name('Managers.index');
