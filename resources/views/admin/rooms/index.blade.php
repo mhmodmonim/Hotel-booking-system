@@ -41,7 +41,11 @@
                                  'method' : 'POST' ,
                                  'success':function(res){
                                      console.log(res.deleteStatus);
-                                    $('#'+buttonId).parents('tr').remove();
+                                     if(res.deleteStatus){
+                                        $('#'+buttonId).parents('tr').remove();
+                                     }else{
+                                         alert('This room  has reversation ');
+                                     }
                                  }
                             });
                         });

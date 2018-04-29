@@ -45,7 +45,7 @@ class ManagerFloorController extends Controller
     public function delete(Request $request)
     {    
         if($request->ajax()){
-            $relatedRooms =Room::where('id','=' , $request->id)->count();
+            $relatedRooms =Room::where('floor_id','=' , $request->id)->count();
            if($relatedRooms > 0){
                 return response()->json(['deleteStatus'=> false  ]);
            }
