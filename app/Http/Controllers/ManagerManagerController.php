@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Employee;
 use Storage;
 use Psy\Util\Json;
+use Spatie\Permission\Models\Role;
+use DB;
 use Auth;
 
 class ManagerManagerController extends Controller
@@ -22,6 +24,15 @@ class ManagerManagerController extends Controller
         return view('admin.Managers.create');
     }
     public function store(Request $request){
+
+        $roleExist = DB::table('roles')->where('name', '=', 'Manager')->get();
+
+        if(empty($roleExist))
+        {
+            dd('func');
+            Role::create(['name' => 'Manager']);
+        }
+
         $request->validate([
             'name' => 'required',
             'email' => 'required',
