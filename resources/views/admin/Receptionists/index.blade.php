@@ -3,7 +3,6 @@
 @section('content')
 
 
-
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
@@ -31,6 +30,8 @@
                         $("#users-table").dataTable().fnDestroy();
                         // Delete action with ajax
                         $('#users-table').on('click', '.delete', function (){
+                            var res=  confirm("Are you sure?");
+                             if(res){
                             var buttonId=$(this).prop('id');
                             $.ajax({
                                 'url': '{{ route("Receptionists.delete") }}' ,
@@ -40,10 +41,11 @@
                                     $('#'+buttonId).parents('tr').remove();
                                  }
                             });
+                             }
                         });
                         // Ban Action with Ajax
                         $('#users-table').on('click', '.Ban', function (){
-                            var buttonId=$(this).prop('id');
+                                var buttonId=$(this).prop('id');
                             $.ajax({
                                 'url': '{{ route("Receptionists.ban") }}' ,
                                 'data':{ 'id':buttonId , '_token':'{{ csrf_token()}}' }  ,
@@ -58,6 +60,8 @@
                                      }
                                  }
                             });
+                             
+                           
                         });
 
                         $("#users-table").dataTable().fnDestroy();
