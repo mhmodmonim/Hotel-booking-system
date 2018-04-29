@@ -46,10 +46,10 @@
                                  'method' : 'POST' ,
                                  'success':function(res){
                                      console.log(res);
-                                     if(res){
+                                     if(res.deleteStatus){
                                         $('#'+buttonId).parents('tr').remove();
                                      }else{
-                                         alert("This floor is not empty")
+                                         alert("This Floor is not empty")
                                      }
                                  }
                             });

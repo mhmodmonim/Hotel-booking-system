@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use \App\Floor;
+use \App\Room;
 use Auth;
 
 class ManagerFloorController extends Controller
@@ -44,15 +45,15 @@ class ManagerFloorController extends Controller
     public function delete(Request $request)
     {    
         if($request->ajax()){
-            $floor =Floor::findOrFail($request->id)->rooms();
-           if($floor){
+            $relatedRooms =Room::where('id','=' , $request->id)->count();
+           if($relatedRooms > 0){
                 return response()->json(['deleteStatus'=> false  ]);
-           }else{
-                //$floor->delete();
+           }
+               $floor = Floor::Find($request->id)->delete();
                 return response()->json(['deleteStatus'=> true  ]);
            }
-        }    
-    }
+    }    
+    
 
    
     
