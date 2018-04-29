@@ -37,7 +37,8 @@
                 <script>
                     $(function() {
                         $('#users-table').on('click', '.delete', function (){
-
+                            var res=  confirm("Are you sure?");
+                             if(res){
                             var buttonId=$(this).prop('id');
                             $.ajax({
                                 'url': '{{ route("floors.delete") }}' ,
@@ -52,6 +53,7 @@
                                      }
                                  }
                             });
+                            }
                         });
                         $('#users-table').DataTable({
                             processing: true,
