@@ -26,6 +26,22 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+Route::get('employee', function () {
+  return view('index');
+});
+
+Route::get('manager', function () {
+  return view('index');
+});
+
+Route::get('receptionist', function () {
+  return view('index');
+});
+
+Route::get('user', function () {
+  return view('index');
+});
+
 
 
 

@@ -43,6 +43,12 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapEmployeeRoutes();
 
+        $this->mapManagerRoutes();
+
+        $this->mapAdminRoutes();
+
+        $this->mapReceptionistRoutes();
+
         //
     }
 
@@ -112,4 +118,41 @@ class RouteServiceProvider extends ServiceProvider
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
     }
+
+    protected function mapManagerRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'user', 'auth:manager'],
+            'prefix' => 'manager',
+            'as' => 'manager.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/manager.php');
+        });
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'user', 'auth:admin'],
+            'prefix' => 'admin',
+            'as' => 'admin.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/admin.php');
+        });
+    }
+
+    protected function mapReceptionistRoutes()
+    {
+        Route::group([
+            'middleware' => ['web', 'user', 'auth:receptionist'],
+            'prefix' => 'receptionist',
+            'as' => 'receptionist.',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/receptionist.php');
+        });
+    }
+
 }

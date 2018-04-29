@@ -7,6 +7,6 @@ Route::get('/admin', function () {
 
     //dd($users);
 
-    return view('user.admin');
+    return view('admin.index');
 })->name('admin');
 

@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/home', function () {
+Route::get('/user', function () {
     $users[] = Auth::user();
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('user')->user();
@@ -8,5 +8,5 @@ Route::get('/home', function () {
     //dd($users);
 
     return view('user.home');
-})->name('home');
+})->name('user');
 
