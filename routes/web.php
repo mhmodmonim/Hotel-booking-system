@@ -26,22 +26,24 @@ Route::get('admin', function () {
    return view('admin.index');
 });
 
+//added section
 Route::get('employee', function () {
-  return view('index');
+  return view('user.auth.login');
 });
 
 Route::get('manager', function () {
-  return view('index');
+  return view('user.auth.login');
 });
 
 Route::get('receptionist', function () {
-  return view('index');
+  return view('user.auth.login');
 });
 
 Route::get('user', function () {
-  return view('index');
+  return view('user.auth.login');
 });
 
+//end added section
 
 
 

@@ -59,6 +59,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
+    //added section
     protected function mapEmployeeRoutes()
     {
         Route::group([
@@ -71,6 +72,7 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
+    //end added section
     /**
      * Define the "user" routes for the application.
      *
@@ -119,10 +121,11 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/api.php'));
     }
 
+    //added section
     protected function mapManagerRoutes()
     {
         Route::group([
-            'middleware' => ['web', 'user', 'auth:manager'],
+            'middleware' => ['web', 'manager', 'auth:manager'],
             'prefix' => 'manager',
             'as' => 'manager.',
             'namespace' => $this->namespace,
@@ -134,7 +137,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAdminRoutes()
     {
         Route::group([
-            'middleware' => ['web', 'user', 'auth:admin'],
+            'middleware' => ['web', 'admin', 'auth:admin'],
             'prefix' => 'admin',
             'as' => 'admin.',
             'namespace' => $this->namespace,
@@ -146,7 +149,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapReceptionistRoutes()
     {
         Route::group([
-            'middleware' => ['web', 'user', 'auth:receptionist'],
+            'middleware' => ['web', 'receptionist', 'auth:receptionist'],
             'prefix' => 'receptionist',
             'as' => 'receptionist.',
             'namespace' => $this->namespace,
@@ -155,4 +158,5 @@ class RouteServiceProvider extends ServiceProvider
         });
     }
 
+    //end added section
 }
