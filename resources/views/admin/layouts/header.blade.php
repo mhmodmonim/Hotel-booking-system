@@ -3,9 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html>
-<head>
-    <meta charset="utf-8">
+<html><meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Starter</title>
     <!-- Tell the browser to be responsive to screen width -->
@@ -96,7 +94,7 @@ desired effect
                                             <div class="pull-left">
                                                 <!-- User Image -->
                                              
-                                                <img src=" {{ Storage::url('images/3.jpg') }}" class="img-circle" alt="User Image">
+                                                <img src="{{ Storage::url(Auth::guard('employee')->user()->image) }}" class="img-circle" alt="User Image">
                                             </div>
                                             <!-- Message title and timestamp -->
                                             <h4>
@@ -181,7 +179,7 @@ desired effect
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{  Storage::url('images/3.jpg') }}" class="user-image"  >
+                            <img src="{{ Storage::url(Auth::guard('employee')->user()->image) }}" class="user-image"  >
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">  {{ ucfirst( Auth::guard('employee')->user()->name ) }}</span>
                         </a>
