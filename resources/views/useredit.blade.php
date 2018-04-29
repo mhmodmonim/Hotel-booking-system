@@ -12,7 +12,7 @@
     <section class="container mt-5">
         <div class="row">
             <div class="col-2">
-                <img src="{{$user->image}}" alt="" class="img-thumbnail">
+                <img src="{{ asset('storage/images/' . $user->image)}}" alt="" class="img-thumbnail">
 
                 <div class="details mt-2">
                 <p class="text-center"><i class="fa fa-get-pocket fa-1x mr-3"></i>  {{$user->name}}</p>
