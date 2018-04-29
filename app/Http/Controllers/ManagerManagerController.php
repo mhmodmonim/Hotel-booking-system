@@ -12,6 +12,10 @@ use Auth;
 
 class ManagerManagerController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware(['role:Admin']);
+    }
     public function index(){           
         $user = Auth::guard('employee')->user();
         return view('admin.Managers.index' );
@@ -81,7 +85,12 @@ class ManagerManagerController extends Controller
         return redirect()->route('Managers.index')
                 ->with('success','Manager updated successfully');
     }
-
-
+        public function render($request, Exception $exception)
+        {
+        if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+            return "dddddd";
+            }
+        return parent::render($request, $exception);
+        }
 
 }

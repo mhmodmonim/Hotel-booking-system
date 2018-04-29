@@ -63,6 +63,8 @@ class RegisterController extends Controller
         ]);
     }
 
+
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -73,13 +75,15 @@ class RegisterController extends Controller
     {
 
         $request = app('request');
+        $image = "";
+        if (empty($data['image'])) {
+            $image = "discover.jpg";
+        } else {
+            $image = $request->image->getClientOriginalName();
 
-        if(empty($data['image'])){
-            $data['image']="1.jpg";
-        }else{
-            $image=$request->image->getClientOriginalName();
+            $path = Storage::putFileAs('public/images', $request->image, $image);
 
-            Storage::putFileAs('public/images', $data['image'], $image);
+
         }
 
         return User::create([
@@ -91,8 +95,8 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'image' => $image,
         ]);
-       
     }
+
 
     /**
      * Show the application registration form.
@@ -111,6 +115,6 @@ class RegisterController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard('user');
+        return Auth::guard('user')->logout('user');
     }
 }

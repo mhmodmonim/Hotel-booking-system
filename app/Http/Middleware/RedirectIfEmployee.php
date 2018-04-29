@@ -18,7 +18,7 @@ class RedirectIfEmployee
 	public function handle($request, Closure $next, $guard = 'employee')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('employee/home');
+	        return redirect('/');
 	    }
 
 	    return $next($request);

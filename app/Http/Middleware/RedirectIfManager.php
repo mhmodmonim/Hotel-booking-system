@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class RedirectIfUser
+class RedirectIfManager
 {
 	/**
 	 * Handle an incoming request.
@@ -15,10 +15,10 @@ class RedirectIfUser
 	 * @param  string|null  $guard
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next, $guard = 'user')
+	public function handle($request, Closure $next, $guard = 'manager')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('/');
+	        return redirect('manager/home');
 	    }
 
 	    return $next($request);

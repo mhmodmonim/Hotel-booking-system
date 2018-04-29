@@ -24,4 +24,8 @@ class Reservation extends Model
         return $this->hasMany(Room :: class);
 
     }
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y') ;
+    }
 }

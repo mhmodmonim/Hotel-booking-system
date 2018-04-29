@@ -12,7 +12,11 @@ use Yajra\Datatables\Datatables;
 
 
 class ManagerController extends Controller
-{     
+{ 
+    public function __construct()
+    {
+        // $this->middleware(['role:Admin|Manager']);
+    }    
     public function index(){ 
         $user = Auth::guard('employee')->user();
         return view('admin.clients.index' , compact('user'));

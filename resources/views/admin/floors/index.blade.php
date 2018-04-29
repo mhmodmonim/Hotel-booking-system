@@ -7,6 +7,17 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
 
+    <div class="continaer">
+        <div class="row mt-5 mb-5">
+            <div class="col-6">
+                <div class="ml-5 ">
+                    <a href="{{route('floors.create')}}" class="btn btn-primary btn-block">Add New Floor</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
             <table class="table table-bordered" id="users-table">
                 <thead>
                 <tr>
@@ -26,7 +37,8 @@
                 <script>
                     $(function() {
                         $('#users-table').on('click', '.delete', function (){
-
+                            var res=  confirm("Are you sure?");
+                             if(res){
                             var buttonId=$(this).prop('id');
                             $.ajax({
                                 'url': '{{ route("floors.delete") }}' ,
@@ -34,13 +46,14 @@
                                  'method' : 'POST' ,
                                  'success':function(res){
                                      console.log(res);
-                                     if(res){
+                                     if(res.deleteStatus){
                                         $('#'+buttonId).parents('tr').remove();
                                      }else{
-                                         alert("This floor is not empty")
+                                         alert("This Floor is not empty")
                                      }
                                  }
                             });
+                            }
                         });
                         $('#users-table').DataTable({
                             processing: true,

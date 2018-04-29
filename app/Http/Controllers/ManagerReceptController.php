@@ -10,8 +10,12 @@ use Auth;
 
 class ManagerReceptController extends Controller
 {
+    public function __construct()
+    {
+        //$this->middleware(['role:Admin|Manager']);
+    }
     
-    public function index(){           
+    public function index(){
         $user = Auth::guard('employee')->user();
         $loginAdminId = $user->id;
         $loginAdminRole = $user->getRoleNames()[0];
@@ -32,10 +36,8 @@ class ManagerReceptController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'country'=>'required',
             'image' =>'required',
             'National_ID' => 'required',
-            'Gender' => 'required',
         ]);
         $path = $request->image->store('public/images');
         $Recept  = new Employee;
@@ -81,9 +83,7 @@ class ManagerReceptController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-            'country'=>'required',
             'National_ID' => 'required',
-            'Gender' => 'required',
         ]);
         $Recept = Employee::findOrFail($id);
         $Recept->password = bcrypt($request->password);

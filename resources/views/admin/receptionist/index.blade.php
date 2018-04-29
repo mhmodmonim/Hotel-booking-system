@@ -57,6 +57,8 @@
                         });
                     });
                     function getMessage(realDeleteRoute, row){
+                        var res=  confirm("Are you sure?");
+                             if(res){
                         var ButtonId =$('#'+row).attr('id');
                         $.ajax({
                             type:'get',
@@ -69,6 +71,7 @@
                                 console.log('not fine');
                             }
                         });
+                             }
                     }
                 </script>
 
