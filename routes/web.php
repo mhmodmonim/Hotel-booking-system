@@ -110,7 +110,7 @@ Auth::routes();
 Route::group(['prefix' => 'employee'], function () {
   Route::get('/login', 'EmployeeAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'EmployeeAuth\LoginController@login');
-  Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
+  Route::post('logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
 
   Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email');
