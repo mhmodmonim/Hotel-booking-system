@@ -93,7 +93,6 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'image' => $image,
         ]);
-       
     }
 
     /**
@@ -113,6 +112,6 @@ class RegisterController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard('user');
+        return Auth::guard('user')->logout('user');
     }
 }
