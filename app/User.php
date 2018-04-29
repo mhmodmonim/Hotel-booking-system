@@ -105,4 +105,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y') ;
+    }
 }

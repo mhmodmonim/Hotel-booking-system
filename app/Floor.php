@@ -16,5 +16,9 @@ class Floor extends Model
     public function employee(){
         return $this->belongsTo(Employee::class);
         }
+    public function getCreatedAtAttribute($value)
+    {
+            return \Carbon\Carbon::parse($value)->format('d-m-Y') ;
+    }    
 
 }

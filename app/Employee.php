@@ -67,5 +67,9 @@ class Employee extends Authenticatable  implements BannableContract
     {
         return $this->hasMany(Floor::class);
     }
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y') ;
+    }
 
 }

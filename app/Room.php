@@ -19,4 +19,8 @@ class Room extends Model
     public function getpriceAttribute($val){ 
         return ($val*0.01).'$' ;    
     }
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y') ;
+    }
 }
