@@ -139,7 +139,7 @@
                                                 {{ __('Logout') }}
                                             </a>
                                             @auth('employee')
-                                            <form id="logout-form" action="/logout" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{route('employeelogout')}}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                                 @endauth

@@ -73,13 +73,15 @@ class RegisterController extends Controller
     {
 
         $request = app('request');
+        $image = "";
+        if (empty($data['image'])) {
+            $image = "discover.jpg";
+        } else {
+            $image = $request->image->getClientOriginalName();
 
-        if(empty($data['image'])){
-            $data['image']="1.jpg";
-        }else{
-            $image=$request->image->getClientOriginalName();
+            $path = Storage::putFileAs('public/images', $request->image, $image);
 
-            Storage::putFileAs('public/images', $data['image'], $image);
+
         }
 
         return User::create([
