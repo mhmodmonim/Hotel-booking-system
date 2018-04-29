@@ -148,11 +148,12 @@
 
 			<div class="album py-5 bg-light">
 				<div class="container">
-@foreach( $availableRooms as $room )
 					<div class="row">
-						<div class="col-md-4">
+
+					@foreach( $availableRooms as $room )
+						<div class="col-md">
 							<div class="card mb-4 box-shadow">
-								<img class="card-img-top" src="{{asset($room->image)}}" alt="Card image cap">
+								<img class="card-img-top" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0hyxfcFGxMKKgSZ7XtdxymG5AMBnwNdgetg9YZCaZ3EFl3oCqKA' alt="Card image">
 								<div class="card-body">
 									<h3 class="card-text" style="color: red;"> price:   <b>{{$room->price}}</b>$</h3>
 									<h4 class="card-text" style="color: green;"> Capacity :   <b>{{$room->capacity}}</b> person(s)</h4>
