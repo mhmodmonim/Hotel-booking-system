@@ -18,10 +18,10 @@
     <div class="container">
     <div class="row mt-5">
         <div class="col-3">
-            <img src="{{$room->image}}" class="img-thumbnail" alt="">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0hyxfcFGxMKKgSZ7XtdxymG5AMBnwNdgetg9YZCaZ3EFl3oCqKA" class="img-thumbnail" alt="">
         </div>
         <div class="col-6">
-            <b>Price: </b> <h3>{{$room->price}}</h3>
+            <b>Price: </b> <h3>{{ (float) $room->price * 100 }}$</h3>
             <b>Capacity: </b> <h3>{{$room->capacity}}</h3>
         </div>
     </div>
@@ -52,7 +52,7 @@
             <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="pk_test_u4z63tALQEHdpxzfSthBLiPu"
-                    data-amount="{{ (float)$room->price * 100}}"
+                    data-amount="{{ (float)$room->price * 100 * 100}}"
                     data-name="Stripe.com"
                     data-description="Example charge"
                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

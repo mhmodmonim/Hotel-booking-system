@@ -139,7 +139,7 @@
                                                 {{ __('Logout') }}
                                             </a>
                                             @auth('employee')
-                                            <form id="logout-form" action="{{ route('employeelogout') }}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="/logout" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                                 @endauth
@@ -151,8 +151,19 @@
                                         </div>
                                     </li>
                                 @else
-                                    <li><a  href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                    <li><a  href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                    {{--<li><a  href="{{ route('login') }}">{{ __('Login') }}</a></li>--}}
+
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Login
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('login') }}">User Login</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="/employee/login">Employee Login</a>
+                                            </div>
+                                        </li>
+                                        <li><a  href="{{ route('register') }}">{{ __('Register') }}</a></li>
 
 
 

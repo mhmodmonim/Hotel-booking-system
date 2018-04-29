@@ -23,7 +23,7 @@
                         $('#users-table').DataTable({
                             processing: true,
                             serverSide: true,
-                            ajax: '{{route('clients.reservation.dataTables')}}',
+                            ajax: '{{route('clients.myreservation.dataTables')}}',
                             columns: [
                                 { data: 'paidPrice', name: 'paidPrice' },
                                 { data: 'clientAccompanyNumber', name: 'clientAccompanyNumber' },

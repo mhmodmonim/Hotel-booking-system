@@ -12,7 +12,7 @@
     <section class="container mt-5">
         <div class="row">
             <div class="col-2">
-                <img src="{{$user->image}}" alt="" class="img-thumbnail">
+                <img src="{{ asset('storage/images/' . $user->image)}}" alt="" class="img-thumbnail">
 
                 <div class="details mt-2">
                 <p class="text-center"><i class="fa fa-get-pocket fa-1x mr-3"></i>  {{$user->name}}</p>
@@ -105,7 +105,7 @@
                 <label for="image" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
 
                 <div class="col-md-6">
-                    <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ old('image') }}" autofocus>
+                    <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" autofocus>
 
                     @if ($errors->has('image'))
                         <span class="invalid-feedback">

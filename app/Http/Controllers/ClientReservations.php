@@ -16,10 +16,10 @@ class ClientReservations extends Controller
 
     public function get_data()
     {
-        $query = DB::table('reservation')
-            ->join('users', 'reservation.user_id', '=' , 'users.id')
-            ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
-            ->select('reservation.paidPrice', 'reservation.clientAccompanyNumber', 'rooms.number', 'users.id')
+        $query = DB::table('reservations')
+            ->join('users', 'reservations.user_id', '=' , 'users.id')
+            ->join('rooms', 'reservations.room_id', '=', 'rooms.id')
+            ->select('reservations.paidPrice', 'reservations.clientAccompanyNumber', 'rooms.number', 'users.id')
             ->where('users.id', '=', Auth::guard('user')->user()->id )
             ->get();
         return datatables()->of($query)->toJson();

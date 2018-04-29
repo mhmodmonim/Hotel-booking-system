@@ -11,6 +11,7 @@ class Room extends Model
          'price',
          'image',
          'floor_id',
+        'employee_id'
     ];
     public function floor(){
         return $this->belongsTo(Floor::class);

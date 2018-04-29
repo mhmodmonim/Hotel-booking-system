@@ -46,7 +46,7 @@ class InvoicePaid extends Notification implements ShouldQueue
         $url = url('http://laravel.local/');
 
         return (new MailMessage)
-                    ->subject('Notification Subject')
+                    ->subject('welcome sir')
                     ->greeting('Hello!')
                     ->line('You are now one of our family')
                     ->action('View website', $url)

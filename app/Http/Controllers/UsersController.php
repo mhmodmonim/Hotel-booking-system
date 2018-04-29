@@ -14,6 +14,7 @@ use App\Notifications\InvoicePaid;
 use App\Events\LoginEvent;
 use Illuminate\Auth\Events\Login;
 use App\Notifications\Sheduled;
+use Auth;
 
 
 
@@ -53,11 +54,11 @@ class UsersController extends Controller
 
     public function get_data_reserved()
     {
-        $user = Auth::guard(employee)->user()->id();
-        $query = DB::table('reservation')
-            ->join('users', 'reservation.user_id', '=', 'users.id')
-            ->join('rooms', 'reservation.room_id', '=', 'rooms.id')
-            ->select('reservation.paidPrice','reservation.clientAccompanyNumber','rooms.number' , 'users.name')
+        $user = Auth::guard('employee')->user()->id;
+        $query = DB::table('reservations')
+            ->join('users', 'reservations.user_id', '=', 'users.id')
+            ->join('rooms', 'reservations.room_id', '=', 'rooms.id')
+            ->select('reservations.paidPrice','reservations.clientAccompanyNumber','rooms.number' , 'users.name')
             ->where('users.employee_id', '=', $user)
             ->get();
         return DataTables::of($query)->toJson();
@@ -71,7 +72,10 @@ class UsersController extends Controller
     public function edit($id , InvoicePaid $invoice)
     {
         $user = User::find($id);
+        $permisionExist = DB::table('permissions')->where('name','=','Approved')->get();
+        if(! $permisionExist){
         $permission = Permission::create(['name' => 'Approved']);
+        }
         $user->givePermissionTo('Approved');
         $user->sendEmailNotification($invoice);
         return redirect('admin/receptionists');

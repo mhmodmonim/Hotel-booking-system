@@ -35,9 +35,9 @@
 
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
             @role('receptionist' , 'employee')
-            <li class="active"><a href="admin/receptionists"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
-            <li class="active"><a href="admin/receptionists/approved"><i class="fa fa-link"></i> <span>My Approved clients</span></a></li>
-            <li class="active"><a href="admin/clients/reservation"><i class="fa fa-link"></i> <span>Clients Reservations​</span></a></li>
+            <li class="active"><a href="{{route('clients.pending')}}"><i class="fa fa-link"></i> <span>Manage Clients</span></a></li>
+            <li class="active"><a href="{{route('clients.approved')}}"><i class="fa fa-link"></i> <span>My Approved clients</span></a></li>
+            <li class="active"><a href="{{route('clients.reservation')}}"><i class="fa fa-link"></i> <span>Clients Reservations​</span></a></li>
             @endrole
             <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
             <li class="treeview">
