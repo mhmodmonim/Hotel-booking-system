@@ -21,7 +21,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
-Auth::routes();
 Route::get('admin', function () {
    return view('admin.index');
 });
@@ -45,7 +44,11 @@ Route::get('user', function () {
 
 //end added section
 
+Route::group([
+  'middleware'=>'auth:employee'
 
+],
+function () {
 
 Route::get('clients', 'ManagerController@index')->name('clients.index');
 Route::get('clientsData', 'ManagerController@get_data')->name('clientsData');
@@ -120,7 +123,7 @@ Route::get('clients/{id}/edit','UsersController@edit')->name('clients.edit');
 Route::get('clients/{id}/delete','UsersController@delete')->name('clients.delete');
 Route::get('employess/{id}/edit','EmployeesController@edit')->name('employees.edit');
 
-
+});
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -130,9 +133,9 @@ Route::group(['prefix' => 'employee'], function () {
   Route::post('/login', 'EmployeeAuth\LoginController@login');
   Route::post('/logout', 'EmployeeAuth\LoginController@logout')->name('employeelogout');
 
-  Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-  Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email');
-  Route::get('/password/reset', 'EmployeeAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::post('/password/email', 'EmployeeAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request.emp');
+  Route::post('/password/reset', 'EmployeeAuth\ResetPasswordController@reset')->name('password.email.emp');
+  Route::get('/password/reset', 'EmployeeAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset.emp');
   Route::get('/password/reset/{token}', 'EmployeeAuth\ResetPasswordController@showResetForm');
 });
 
