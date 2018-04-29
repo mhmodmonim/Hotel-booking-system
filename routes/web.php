@@ -17,7 +17,8 @@ use App\Employee;
 */
 
 Route::get('/', function () {
-  return view('index'); 
+return view('index'); 
+
 })->name('home');
 
 Route::get('reservation', 'ReservationController@index')->name('reservation');
