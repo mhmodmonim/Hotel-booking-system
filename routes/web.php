@@ -16,6 +16,12 @@ use App\Employee;
 |
 */
 
+Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
+Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
+Route::get('client/reservation/data', 'ClientReservations@get_data')->name('client.reservation.data');
+Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
+
+
 Route::get('/', function () {
 return view('index'); 
 
@@ -100,10 +106,6 @@ Route::group(['middleware'=>'employees'],function () {
 
 });
 
-Route::get('reservation/room/{id}', 'RoomsController@index')->name('booking');
-Route::get('client/reservation/', 'ClientReservations@index')->name('client.reservation');
-Route::get('client/reservation/data', 'ClientReservations@get_data')->name('client.reservation.data');
-Route::post('reservation/payment/{id}', 'ReservationController@store')->name('payment');
 
 Route::get('admin/emp/getdata', 'EmployeesController@get_data')->name('employees.index.dataTables');
 Route::get('admin/emp', 'EmployeesController@index');
